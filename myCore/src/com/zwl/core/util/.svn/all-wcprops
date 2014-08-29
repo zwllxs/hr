@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/my_core/!svn/ver/23/myCore/src/com/zwl/core/util
+END
+FreemarkerUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/my_core/!svn/ver/2/myCore/src/com/zwl/core/util/FreemarkerUtil.java
+END
+ServletUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/my_core/!svn/ver/43/myCore/src/com/zwl/core/util/ServletUtil.java
+END
+StringUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/my_core/!svn/ver/9/myCore/src/com/zwl/core/util/StringUtil.java
+END
+SpringContextUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/my_core/!svn/ver/9/myCore/src/com/zwl/core/util/SpringContextUtil.java
+END
+JsonUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/my_core/!svn/ver/2/myCore/src/com/zwl/core/util/JsonUtil.java
+END
+PropertiesUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/my_core/!svn/ver/23/myCore/src/com/zwl/core/util/PropertiesUtil.java
+END

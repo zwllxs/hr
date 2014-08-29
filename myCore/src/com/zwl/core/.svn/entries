@@ -1,0 +1,52 @@
+10
+
+dir
+38
+http://www.svnchina.com/svn/my_core/myCore/src/com/zwl/core
+http://www.svnchina.com/svn/my_core
+
+
+
+2011-05-25T09:37:03.310191Z
+38
+zwllxs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+e339471a-3c44-4ff8-99c4-997f7e71879c
+
+service
+dir
+
+db
+dir
+
+scheduling
+dir
+
+struts2
+dir
+
+tag
+dir
+
+page
+dir
+
+util
+dir
+
+po
+dir
+
