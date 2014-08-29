@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:conf/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="com.zwl.db.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String"></map> 
+		</property>
+	</bean>
+	
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.default_batch_fetch_size">10</prop>
+				<prop key="hibernate.max_fetch_depth">0</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props> 
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/com/yikang365/po/</value>
+			</list>
+		</property>
+	
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="nestedTransactionAllowed" value="true" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- 事务前 -->
+	<aop:config proxy-target-class="false">
+		<!-- <aop:pointcut id="commonServiceOperation" expression="execution(* com.yikang365.service.*Service.*(..))" />  --> 
+		<!-- <aop:advisor pointcut-ref="commonServiceOperation" advice-ref="txAdvice" /> -->
+		<aop:advisor advice-ref="sessionBeforeAdvice" pointcut="execution(* com.yikang365.service.*Service.*(..))" order="100"/> 
+	</aop:config>
+
+	<!-- 事务 -->
+	<aop:config>
+		<!-- <aop:pointcut id="commonServiceOperation" expression="execution(* com.yikang365.service.*Service.*(..))" />  --> 
+		<!-- <aop:advisor pointcut-ref="commonServiceOperation" advice-ref="txAdvice" /> -->
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.yikang365.service.*Service.*(..))" order="200"/> 
+	</aop:config>
+
+	<!-- 事务后 -->
+	<aop:config proxy-target-class="false">
+		<!-- <aop:pointcut id="commonServiceOperation" expression="execution(* com.yikang365.service.*Service.*(..))" />  --> 
+		<!-- <aop:advisor pointcut-ref="commonServiceOperation" advice-ref="txAdvice" /> -->
+		<aop:advisor advice-ref="dataSourceAfterAdvice" pointcut="execution(* com.yikang365.service.*Service.*(..))" order="300"/> 
+	</aop:config>
+	
+	
+	<bean id="sessionBeforeAdvice" class="com.zwl.db.datasource.aop.SessionBeforeAdvice" />  
+          
+    <bean id="dataSourceAfterAdvice" class="com.zwl.db.datasource.aop.DataSourceAfterAdvice" />  
+	
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="init*" rollback-for="Exception" />
+			<tx:method name="save*" rollback-for="Exception" />
+			<tx:method name="create*" rollback-for="Exception" />
+			<tx:method name="login*" rollback-for="Exception" />
+			<tx:method name="add*" rollback-for="Exception" />
+			<tx:method name="update*" rollback-for="Exception" />
+			<tx:method name="modify*" rollback-for="Exception" />
+			<tx:method name="delete*" rollback-for="Exception" />
+			<tx:method name="remove*" rollback-for="Exception" />
+			<tx:method name="clear*" rollback-for="Exception" />
+			<tx:method name="register*" rollback-for="Exception" />
+			<tx:method name="reset*" rollback-for="Exception" />
+			<tx:method name="bind*" rollback-for="Exception" />
+			<tx:method name="cancel*" rollback-for="Exception" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 
+	<bean id="ehcacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="/WEB-INF/classes/ehcache.xml" />
+	</bean>
+	 -->
+		
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+		
+	<bean id="dao" class="com.yikang365.core.DaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean> 
+</beans>

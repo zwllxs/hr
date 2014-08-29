@@ -1,0 +1,2 @@
+在操作数据库前使用如下切换数据源:
+DataSourcesHolder.setDataSourceName("mysqlDatasource2"); 
