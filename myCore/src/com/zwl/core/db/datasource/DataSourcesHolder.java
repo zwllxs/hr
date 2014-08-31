@@ -14,7 +14,7 @@ public class DataSourcesHolder
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
     
     /**
-     * 切换要调用的数据源，
+     * 切换要调用的数据源，  
      * @param param  数据源名称，
      */
     public static void setDataSourceName(String param)
