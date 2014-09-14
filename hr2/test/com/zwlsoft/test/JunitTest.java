@@ -1,15 +1,15 @@
 package com.zwlsoft.test;
 
-import junit.framework.TestCase;
-
 import org.apache.log4j.Logger;
+import org.apache.xmlbeans.impl.tool.XSTCTester.TestCase;
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.wei.ssi.bean.Employe;
-import com.wei.ssi.service.EmployeService;
-import com.wei.ssi.utils.MethodUtil;
-import com.wei.ssi.utils.SpringContextUtil;
+import com.zwlsoft.bean.Employe;
+import com.zwlsoft.service.EmployeService;
+import com.zwlsoft.utils.MethodUtil;
+import com.zwlsoft.utils.SpringContextUtil;
 
 /**
  * junit测试工具类， 咿呀网提供 www.yy606.com
@@ -17,9 +17,9 @@ import com.wei.ssi.utils.SpringContextUtil;
  *
  */
 public class JunitTest extends TestCase {
-	
+    
 	ApplicationContext context = new ClassPathXmlApplicationContext(
-			new String[]{"com/wei/ssi/conf/spring/*.xml"}); 
+			new String[]{"conf/spring/*.xml"}); 
 	
 	public static Logger log = Logger.getLogger(JunitTest.class);
 	EmployeService<Employe> employeService =  (EmployeService)SpringContextUtil.getBean("employeService") ;

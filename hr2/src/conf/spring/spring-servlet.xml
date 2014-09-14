@@ -9,8 +9,8 @@
 
 	<!-- 扫描classpath的包下的所有类，该包路径下的类可以不需要配置bean了 -->
 	<context:component-scan base-package="org.springframework.samples.mvc.basic" />
-	<context:component-scan base-package="com.wei.ssi.controller" />
-	<context:component-scan base-package="com.wei.ssi.service" />
+	<context:component-scan base-package="com.zwlsoft.controller" />
+	<context:component-scan base-package="com.zwlsoft.service" />
 	
 	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />

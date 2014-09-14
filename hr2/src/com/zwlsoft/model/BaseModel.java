@@ -1,6 +1,6 @@
 package com.zwlsoft.model;
 
-import com.wei.ssi.utils.Navigate;
+import com.zwlsoft.utils.Navigate;
 
 public class BaseModel {
 

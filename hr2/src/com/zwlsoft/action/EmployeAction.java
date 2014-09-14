@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.wei.ssi.bean.Employe;
-import com.wei.ssi.bean.User;
-import com.wei.ssi.utils.MethodUtil;
+import com.zwlsoft.bean.Employe;
+import com.zwlsoft.bean.User;
 import com.zwlsoft.model.EmployeModel;
-import com.zwlsoftservice.EmployeService;
+import com.zwlsoft.service.EmployeService;
+import com.zwlsoft.utils.MethodUtil;
  
 @Controller
 public class EmployeAction extends MultiActionController{

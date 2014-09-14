@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import com.wei.ssi.bean.Person;
-import com.wei.ssi.bean.Person2;
-import com.wei.ssi.utils.PersonValidator;
+import com.zwlsoft.bean.Person;
+import com.zwlsoft.bean.Person2;
+import com.zwlsoft.utils.PersonValidator;
 
 /**
  * 表单tag

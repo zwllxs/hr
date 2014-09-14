@@ -1,12 +1,10 @@
-package com.zwlsoftservice;
+package com.zwlsoft.service;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.wei.ssi.mapper.BaseMapper;
-import com.wei.ssi.model.BaseModel;
+import com.zwlsoft.mapper.BaseMapper;
+import com.zwlsoft.model.BaseModel;
 
 public class BaseService<T> {
 

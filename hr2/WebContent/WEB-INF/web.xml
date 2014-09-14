@@ -8,7 +8,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-				classpath:com/wei/ssi/conf/spring/*.xml
+				classpath:conf/spring/*.xml
 			</param-value>
 	</context-param>
 	<!-- Spring 监听器 -->
@@ -45,7 +45,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				classpath:com/wei/ssi/conf/spring/*.xml
+				classpath:conf/spring/*.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

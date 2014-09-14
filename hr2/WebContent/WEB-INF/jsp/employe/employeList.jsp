@@ -142,7 +142,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		     <img src="<%=basePath%>images/report/delete.gif" onclick="toSubmit('del')" style="cursor: pointer;">&nbsp;
 		</td> 
 		<%-- 分页面公共页面 --%>
-		<td align="right"><%@ include file="/WEB-INF/jsp/common/navigate.jsp"%></td>
+		<td align="right">
+		</td>
 	</tr>
 </table>  
 </form>
