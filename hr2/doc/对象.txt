@@ -1,0 +1,32 @@
+createTime
+
+
+Á÷³Ì±í: 
+	processorId
+	processorName
+	handledBy
+	handledTime
+	updateTime
+
+	createBy
+	createTime
+	
+	
+	statusCode
+	statusName
+	handledLevelCode
+	handledDepartmentCode
+	handledDepartmentName
+	realDealedBy
+	realDealedTime
+	isFinished
+
+	finishedTime
+	isLastData
+	actionId
+	previousProcessorId
+	previousStatusCode
+	roleName
+	roleId
+	createRemark
+	endRemark

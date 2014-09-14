@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-autowire="byName">
+
+	<!-- 扫描classpath的包下的所有类，该包路径下的类可以不需要配置bean了 -->
+	<context:component-scan base-package="org.springframework.samples.mvc.basic" />
+	<context:component-scan base-package="com.wei.ssi.controller" />
+	<context:component-scan base-package="com.wei.ssi.service" />
+	
+	<!-- Configures the @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<mvc:view-controller path="/jsp/" view-name="hello"/>
+
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	</mvc:interceptors>
+
+	<mvc:resources mapping="/res/**" location="/res/" />
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 以下为demo -->	
+	<!-- 直接页面跳转，此路径，一是要用name,二是要加*.do,三是前面要加/ -->	
+	<bean name="/regController2.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController" >
+		<property name="viewName" value="employe/employeEdit"></property>
+	</bean>
+	
+	<!-- 访问/hello.do时，跳到hello.jsp上去  -->
+	<bean name="/hello.do" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" /> 
+	
+</beans>
