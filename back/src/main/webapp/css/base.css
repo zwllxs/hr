@@ -1,0 +1,19 @@
+.notnull {
+  font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#FF0000;
+}
+
+.error{
+	color:red;
+	margin:0px;
+	padding:0px;
+	display:inline;
+}
+
+i.error{
+ background-image: url("../img/icon.png");
+ background-repeat: no-repeat;
+ background-position: 0 -298px;
+ padding-left: 16px;
+ padding-bottom:3px;
+ padding-top:3px;
+}

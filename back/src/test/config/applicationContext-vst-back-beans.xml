@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<context:component-scan base-package="com.lvmama.vst.back.biz"></context:component-scan>
+ 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+ 	
+ 	<context:annotation-config />
+ 	<!-- 排除vst.back目录下Controller的service注入 -->
+ 	<context:component-scan base-package="com.lvmama.vst.back">           
+		 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<context:component-scan base-package="com.lvmama.vst.pet.adapter,com.lvmama.vst.pet.supp,com.lvmama.vst.pet.goods">           
+		 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value>
+				<value>classpath*:const.properties</value>
+				<value>classpath*:jms.properties</value>
+			</list>
+		</property>
+	</bean>
+	<import resource="classpath*:applicationContext-vst-back-database.xml" />
+	<import resource="classpath*:applicationContext-vst-comm-beans.xml"/>
+	<import resource="classpath*:applicationContent-vst-back-remote.xml"/>
+	<import resource="classpath*:applicationContext-vst-comm-jms.xml"/>
+	<import resource="classpath*:applicationContext-vst-order-processer.xml"/>
+	<import resource="classpath*:applicationContext-vst-order-trigger.xml"/>
+</beans>

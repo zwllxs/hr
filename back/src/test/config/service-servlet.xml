@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- <bean name="/roleRemoteService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="roleService"/>
+		<property name="serviceInterface" value="com.lvmama.vst.front.user.service.RoleService"/>
+	</bean>
+   -->
+	<bean name="/categoryClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="categoryClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.CategoryClientService"/>
+	</bean>
+	<bean name="/branchClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="branchClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.BranchClientService"/>
+	</bean>
+	<bean name="/branchPropClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="branchPropClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.BranchPropClientService"/>
+	</bean>
+	
+	<bean name="/categoryPropClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="categoryPropClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.CategoryPropClientService"/>
+	</bean>
+	<bean name="/categoryPropGroupClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="categoryPropGroupClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.CategoryPropGroupClientService"/>
+	</bean> 
+	<bean name="/dictClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="dictClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.DictClientService"/>
+	</bean>
+	<bean name="/dictPropClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="dictPropClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.DictPropClientService"/>
+	</bean>
+	<bean name="/districtClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="districtClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.DistrictClientService"/>
+	</bean>
+	<bean name="/districtSignClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="districtSignClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.biz.service.DistrictSignClientService"/>
+	</bean> 
+   
+	<bean name="/prodProductClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="prodProductClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prod.service.ProdProductClientService"/>
+	</bean> 
+
+	<bean name="/prodProductBranchPropClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="prodProductBranchPropClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prod.service.ProdProductBranchPropClientService"/>
+	</bean> 
+
+	<bean name="/prodProductBranchClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="prodProductBranchClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prod.service.ProdProductBranchClientService"/>
+	</bean> 
+
+	<bean name="/prodProductPropClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="prodProductPropClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prod.service.ProdProductPropClientService"/>
+	</bean> 
+
+	<bean name="/prodProductNoticeClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="prodProductNoticeClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prod.service.ProdProductNoticeClientService"/>
+	</bean>
+	
+	<bean name="/distGoodsClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="distGoodsClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.dist.service.DistGoodsClientService"/>
+	</bean>
+		
+	<bean name="/distGoodsTimePriceClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="distGoodsTimePriceClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.dist.service.DistGoodsTimePriceClientService"/>
+	</bean>
+	
+	<bean name="/orderServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="orderServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.ord.service.OrderService"/>
+	</bean>
+	
+	<bean name="/vstOrderServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="vstOrderServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstOrdOrderService"/>
+	</bean>
+	
+	<bean name="/orderSupplierNotifyServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="orderSupplierNotifyServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.ord.service.OrderSupplierNotifyService"/>
+	</bean>
+	
+	<bean name="/ordPaymentClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ordPaymentClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.comm.pet.service.pay.NotifierService"/>
+	</bean>
+	
+	<bean name="/suppGoodsClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="suppGoodsClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.goods.service.SuppGoodsClientService"/>
+	</bean>
+	<bean name="/suppGoodsTimePriceClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="suppGoodsTimePriceClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.goods.service.SuppGoodsTimePriceClientService"/>
+	</bean>
+	<bean name="/suppSupplierClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="suppSupplierClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.supp.service.SuppSupplierClientService"/>
+	</bean>
+	
+	<bean name="/ebkUserClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkUserClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkUserClientService"/>
+	</bean>
+	
+	<bean name="/ebkPermissionClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkPermissionClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkPermissionClientService"/>
+	</bean>
+	
+	<bean name="/ebkUserPermissionClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkUserPermissionClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkUserPermissionClientService"/>
+	</bean>
+	
+	<bean name="/suppContractClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="suppContractClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.supp.service.SuppContractClientService"/>
+	</bean>
+	
+	<!-- EBOOKING 公告管理 -->
+	<bean name="/ebkAnnouncementClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkAnnouncementClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkAnnouncementClientService"/>
+	</bean>
+
+	<!-- 图片处理 -->
+	<bean name="/comPhotoClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="comPhotoClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.pub.service.ComPhotoClientService"/>
+	</bean> 
+
+	<!-- EBOOKING 订单任务处理 -->
+	<bean name="/ebkOrderTaskClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkOrderTaskClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkOrderTaskClientService"/>
+	</bean>	
+	<!-- 供应商 -->
+	<bean name="/vstSuppSupplierServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="vstSuppSupplierServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstSuppSupplierService"/>
+	</bean> 
+	<!-- 产品  -->
+	<bean name="/vstProdProductServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="vstProdProductServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstProdProductService"/>
+	</bean>
+	<!-- 时间价格  -->
+	<bean name="/vstProdGoodsTimePriceServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="vstProdGoodsTimePriceServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstProdGoodsTimePriceService"/>
+	</bean>		
+	<!-- EBOOKING 供应商凭证处理 -->
+	<bean name="/ebkCertifClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkCertifClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkCertifClientService"/>
+	</bean>	
+	<bean name="/promotionServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="promotionServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.prom.service.PromotionService"/>
+	</bean>	
+
+	<bean name="/ebkProdApplyClientServiceRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="ebkProdApplyClientServiceRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.ebooking.client.ebk.serivce.EbkProdApplyClientService"/>
+	</bean>		
+	
+	<!-- 日志处理 -->
+	<bean name="/comLogClientRemote" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="comLogClientRemote"/>
+		<property name="serviceInterface" value="com.lvmama.vst.back.client.pub.service.ComLogClientService"/>
+	</bean> 
+	
+</beans>

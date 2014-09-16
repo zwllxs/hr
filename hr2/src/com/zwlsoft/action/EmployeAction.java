@@ -199,12 +199,12 @@ public class EmployeAction extends MultiActionController{
 //                匹配company/123/user/456/detail等的URL。
 	
 	//访问不到,({userId}不能有$,)
-	@RequestMapping("/employe/${userId}")
-	public String test2(@PathVariable("userId") String userId)
-	{
-	    System.out.println("userId: "+userId);
-	    return "ok";
-	}
+//	@RequestMapping("/employe/${userId}")
+//	public String test2(@PathVariable("userId") String userId)
+//	{
+//	    System.out.println("userId: "+userId);
+//	    return "ok";
+//	}
 	
 	//访问得到,没加$,能访问到,open/test/222.do能访问到
 	@RequestMapping("/test/{userId}")

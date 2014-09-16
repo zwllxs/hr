@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-autowire="byName">
+	 
+	<bean id="ebkCertifProcesser" class="com.lvmama.vst.back.ebooking.processer.EbkCertifProcesser" />
+	<bean id="visaApprovalProcesser" class="com.lvmama.vst.back.prod.processer.VisaApprovalProcesser" />
+	<bean id="ebkCertifCombCruiseProcesser" class="com.lvmama.vst.back.ebooking.processer.EbkCertifCombCruiseProcesser" />
+	
+	<bean id="orderMessageConsumer" class="com.lvmama.vst.comm.jms.TopicMessageConsumer">
+		<property name="destName"><value>ActiveMQ.VST_ORDER.${jms_node}</value></property>
+		<property name="processerList">
+			<list>
+				<ref local="ebkCertifProcesser"/>
+				<ref local="visaApprovalProcesser"/>
+				<ref local="ebkCertifCombCruiseProcesser"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 订阅 -->
+	<bean id="orderMessageListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="orderMessageConsumer" />
+		<property name="defaultListenerMethod" value="receive" />
+	</bean>
+	
+	<!-- 消息监听 TOPIC 模式    -->
+	<bean id="orderTopicListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="destination" ref="VST_ORDER_TOPIC" />
+		<property name="messageListener" ref="orderMessageListener" />
+	</bean>
+	
+</beans>

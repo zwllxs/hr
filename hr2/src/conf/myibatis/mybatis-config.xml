@@ -4,7 +4,4 @@
 <configuration>
 	<typeAliases>
 	</typeAliases>
-	<mappers>
-		<mapper resource="conf/myibatis/EmployeMapper.xml" />
-	</mappers>
 </configuration>

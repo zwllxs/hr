@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName">
+
+	<!-- 通过Spring HttpInvoker机制暴露远程访问服务，命名规则为xxBean -->
+	<!-- <bean id="localProductRemoteBean" class="com.versatile.product.remote.ProductRemoteServiceImpl" /> -->
+	<!--
+	  <bean id="roleRemoteService"
+        	class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="${vst_back.serviceUrl}/roleRemoteService" />
+        <property name="serviceInterface" value="com.lvmama.vst.front.user.service.RoleService" />
+        <property name="chunkedPost" value="false" />
+        <property name="overloadEnabled" value="true" />
+    </bean> 
+	 -->
+	 
+	 <bean id="suppCommonClientRemote" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="${vst_supp.serviceUrl}/suppCommonClientRemote" />
+        <property name="serviceInterface" value="com.lvmama.vst.supp.client.elong.service.SuppCommonClientService" />
+        <property name="chunkedPost" value="false" />
+        <property name="overloadEnabled" value="true" />
+    </bean>
+    
+    <bean id="supplierOrderService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="${vst_supp.serviceUrl}/supplierOrderService" />
+        <property name="serviceInterface" value="com.lvmama.vst.supp.client.service.SupplierOrderService" />
+        <property name="chunkedPost" value="false" />
+        <property name="overloadEnabled" value="true" />
+    </bean>
+    
+    <bean id="supplierStockCheckService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="${vst_supp.serviceUrl}/supplierStockCheckService" />
+        <property name="serviceInterface" value="com.lvmama.vst.supp.client.service.SupplierStockCheckService" />
+        <property name="chunkedPost" value="false" />
+        <property name="overloadEnabled" value="true" />
+    </bean>
+	<bean id="smsRemoteService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl" value="${petPublic.serviceUrl}/smsRemoteService" />
+		<property name="serviceInterface" value="com.lvmama.comm.pet.service.sms.SmsRemoteService" />
+		<property name="chunkedPost" value="false" />
+		<property name="overloadEnabled" value="true"/>
+	</bean>
+	<bean id="vstProdProductServiceRemote" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl" value="${vst_back.serviceUrl}/vstProdProductServiceRemote" />
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstProdProductService" />
+		<property name="chunkedPost" value="false" />
+		<property name="overloadEnabled" value="true"/>
+	</bean>
+	<bean id="vstProdGoodsTimePriceServiceRemote" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl" value="${vst_back.serviceUrl}/vstProdGoodsTimePriceServiceRemote" />
+		<property name="serviceInterface" value="com.lvmama.comm.vst.service.VstProdGoodsTimePriceService" />
+		<property name="chunkedPost" value="false" />
+		<property name="overloadEnabled" value="true"/>
+	</bean>
+	<bean id="ordUserOrderService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl" value="${superOrder.serviceUrl}/ordUserOrderService" />
+		<property name="serviceInterface" value="com.lvmama.comm.bee.service.ord.IOrdUserOrderService" />
+		<property name="chunkedPost" value="false" />
+		<property name="overloadEnabled" value="true"/>
+	</bean>
+
+</beans>
