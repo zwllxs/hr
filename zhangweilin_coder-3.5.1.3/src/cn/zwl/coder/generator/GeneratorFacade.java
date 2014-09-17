@@ -15,7 +15,7 @@ import cn.zwl.coder.generator.util.BeanUtil;
 import cn.zwl.coder.generator.util.StringUtil;
 
 /**
- * @author badqiu
+ * @author zhangweilin
  */
 public class GeneratorFacade
 {

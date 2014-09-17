@@ -4,8 +4,7 @@ import java.util.Random;
 
 /**
  * 
- * @author badqiu
- * @email badqiu(a)gmail.com
+ * @author zhangweilin
  */
 public class StringUtil {
     

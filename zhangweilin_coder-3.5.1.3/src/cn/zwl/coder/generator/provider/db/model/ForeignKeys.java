@@ -10,7 +10,7 @@ import java.util.Map;
 import cn.zwl.coder.generator.util.ListHashtable;
 
 /**
- * @author Richard
+ * @author zhangweilin
  * This class contains a list of all the tables for which foreign keys
  * exist for the containing SqlTable. It contains a reference to the parent
  * and also a Hashtable of foreign keys for each table 

@@ -29,8 +29,7 @@ import freemarker.template.TemplateException;
 /**
  * 生成器对象
  * 
- * @author badqiu
- * @email badqiu(a)gmail.com
+ * @author zhangweilin
  */
 public class Generator
 { 

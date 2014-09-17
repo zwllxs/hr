@@ -12,7 +12,7 @@ import cn.zwl.coder.generator.util.PropertiesUtil;
 /**
  * 用于装载generator.properties文件,
  * 在生成文件名时，如果有什么还需要动态生成的，可以在此属性文件中添加属性
- * @author badqiu
+ * @author zhangweilin
  * @email badqiu(a)gmail.com
  */
 public class GeneratorProperties {

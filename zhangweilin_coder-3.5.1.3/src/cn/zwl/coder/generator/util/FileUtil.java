@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author badqiu
- * @email badqiu(a)gmail.com
+ * @author zhangweilin
  */
 public class FileUtil
 {

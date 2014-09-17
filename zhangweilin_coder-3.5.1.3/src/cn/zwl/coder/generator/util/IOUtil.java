@@ -9,8 +9,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 /**
  * 
- * @author badqiu
- * @email badqiu(a)gmail.com
+ * @author zhangweilin
  */
 public class IOUtil {
 

@@ -17,7 +17,6 @@ import cn.zwl.coder.generator.util.StringUtil;
 
 /**
  * 
- * @author badqiu,Linlin Yu
  */
 public class JavaMethod {
 	private JavaClass clazz;
