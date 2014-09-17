@@ -32,9 +32,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
 	
 
 	<mvc:view-controller path="/" view-name="forward:/index" />
-	<mvc:interceptors>
-		<bean class="com.lvmama.vst.comm.spring.HttpServletInterceptor"/>
-	</mvc:interceptors>
+<!-- 	<mvc:interceptors> -->
+<!-- 		<bean class="com.lvmama.vst.comm.spring.HttpServletInterceptor"/> -->
+<!-- 	</mvc:interceptors> -->
 	
 	<!-- 对某些静态资源，如css,图片等进行过滤 ,有引用 "/resources/**" 的路径引用转到工程的/resources/目录取资源 -->
 	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
