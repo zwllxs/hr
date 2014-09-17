@@ -1,0 +1,8 @@
+<#assign className = table.className>   
+<#assign classNameLower = className?uncap_first> 
+
+ 
+<bean id="${classNameLower}Service" class="${basepackage}.service.${className}Service"/>
+<bean id="${classNameLower}Dao" class="${basepackage}.dao.${className}Dao"/>
+<!-- 文件包含后面的这段字符: generator-...-location,则在模板输出的地方,如果发现同名文件,则可将生成内容插入在该标记之后 -->
+<!--  zhangweilin_insert -->

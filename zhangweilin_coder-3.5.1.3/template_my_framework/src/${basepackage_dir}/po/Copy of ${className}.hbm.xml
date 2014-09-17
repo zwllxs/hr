@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="${basepackage}.po">
+     <class name="${table.className}" table="${table.sqlName}">
+         <id name="${table.pkName?uncap_first}">
+            <generator class="${(table.pkColumn.javaType=='int'||table.pkColumn.javaType=='long')?string('native','uuid')}"></generator>
+         </id>
+         
+ <#-- 表的普通字段,即po的普通属性 -->
+<#assign isFK=false />
+<#list table.columns as c>
+    <#--得到当前表所有的外键-->
+    <#list table.importedKeys.foreignKeyMap?keys as key>
+        <#--得到当前外键的所有外键字段-->
+        <#list table.importedKeys.foreignKeyMap[key].fkColumnMap?keys as key2>
+            <#--如果外键字段与当前属性名一样,则此属性不输出-->
+            <#if table.importedKeys.foreignKeyMap[key].fkColumnMap[key2]?replace('_', '')?lower_case=c.columnName?lower_case>
+                <#assign isFK=true />
+            </#if>
+        </#list>
+    </#list>
+   <#--如果是主键，也不输出-->
+   <#if c.isPK>
+   		<#assign isFK=true />
+   </#if>
+<#if isFK=false>
+		<!-- ${c.remarks}-->
+    	<property name="${c.columnName?uncap_first}"  <#if c.sqlName?index_of("_")!=-1> column="${c.sqlName}"</#if>/>
+    	
+</#if>
+        <#assign isFK=false />
+</#list>
+
+
+<#--外键，也即对象引用,在确定对象类型时还是有问题，待解决-->
+<#list table.importedKeys.foreignKeyMap?keys as key>
+    <#--遍历指定外键对应的外键字段，实际是只有一个字的-->
+	<#list table.importedKeys.foreignKeyMap[key].parentColumnMap?keys as key2>
+	   <!-- ${tableMap['tableName_'+key].remarks} -->
+       <many-to-one name="${tableMap['tableName_'+key].className?uncap_first}" class="${tableMap['tableName_'+key].className}">
+		  <column name="${table.importedKeys.foreignKeyMap[key].parentColumnMap[key2]}"></column>
+	   </many-to-one>
+	   
+	</#list>
+</#list>
+	              
+     </class>
+</hibernate-mapping>

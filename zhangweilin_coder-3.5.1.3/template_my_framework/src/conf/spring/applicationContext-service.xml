@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="roleService" class="${basepackage}.service.impl.RoleServiceImpl">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean id="adminService" class="${basepackage}.service.impl.AdminServiceImpl">
+		<property name="dao" ref="dao" />
+		<property name="loginLogService" ref="loginLogService" />
+	</bean>
+	
+	<bean id="loginLogService" class="${basepackage}.service.impl.LoginLogServiceImpl">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	<#list tableMap?keys as key>
+	<!-- ${tableMap[key].remarks} -->
+	<bean id="${tableMap[key].className?uncap_first}Service" class="${basepackage}.service.impl.${tableMap[key].className}ServiceImpl">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	</#list>
+	
+</beans>

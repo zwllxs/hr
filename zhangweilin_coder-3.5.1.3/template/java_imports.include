@@ -1,0 +1,17 @@
+import java.util.*;
+
+import javacommon.base.*;
+import javacommon.util.*;
+
+
+import ${basepackage}.model.*;
+import ${basepackage}.dao.*;
+import ${basepackage}.service.*;
+
+
+/**
+ * @author 张伟林 email:zwllxs@163.com
+ * @version 1.0
+ * @since 1.0
+ */
+

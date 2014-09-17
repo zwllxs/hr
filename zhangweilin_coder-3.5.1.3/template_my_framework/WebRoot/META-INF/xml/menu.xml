@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Menus>
+	<Menu name="Admin" title="用户管理" entity="用户" crud="add_update,load,edit,list,del,del_bat">
+		<!-- 子菜单里的name目前只是标识符,不参与任何逻辑 -->
+		<subMenu name="addAdmin" title="管理员添加" location="edit_Admin.html" /> 
+		<subMenu name="listAdmin" title="管理员列表" location="list_Admin.html"  />
+		
+		<subMenu name="editPassword" title="修改密码" purview="true" purTitle="进入修改密码页面" location="edit_admin_password.html"/>
+		<subMenu name="modifyPassword" show="false"  purview="true"  title="修改密码" location="modify_password.html"/>
+	</Menu>
+	<Menu name="Role" title="角色管理" entity="角色" active="true">
+		<subMenu name="addRole" title="角色添加" location="edit_Role.html" />
+		<subMenu name="listRole" title="角色列表" location="list_Role.html"  often="true" />
+	</Menu>
+	<Menu name="LoginLog" title="登陆日志管理" entity="登陆日志"  crud="list,del,del_bat">
+		<subMenu name="listLoginLog" title="登陆日志列表" location="list_LoginLog.html"/>
+	</Menu>
+ 
+ 	<#list tableMap?keys as key>
+	<Menu name="${tableMap[key].className}" title="${tableMap[key].remarks}管理" entity="${tableMap[key].remarks}">
+		<subMenu name="add${tableMap[key].className}" title="${tableMap[key].remarks}添加" location="edit_${tableMap[key].className}.html" />
+		<subMenu name="list${tableMap[key].className}" title="${tableMap[key].remarks}列表" location="list_${tableMap[key].className}.html"/>
+	</Menu>
+	
+	</#list>
+</Menus>

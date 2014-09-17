@@ -1,0 +1,51 @@
+table.className:${table.className}
+table.classNameFirstLower:${table.classNameFirstLower}
+table.sqlName:${table.sqlName} 
+table.idColumn:${table.idColumn} 
+table.tableAlias:${table.tableAlias} 
+table.constantName:${table.constantName} 
+table.pkColumns:${table.pkColumns[0].sqlName} 
+table.exportedKeys: ${table.exportedKeys.parentTable.className}
+table.exportedKeys.size: ${table.exportedKeys.size}
+basepackage: ${basepackage}
+basepackage_dir: ${basepackage_dir}
+outRoot: ${outRoot}
+jspFileBasePath:${jspFileBasePath!'无jspFileBasePath'}
+AdminUser:uncap_first:${'AdminUser'?uncap_first}  //首字母小写
+构造:<#include "/macro.include"> <@generateConstructor constructor=table.className /> 
+导入: <#include "/java_imports.include">
+
+
+外键=====
+table.importedKeys.associatedTables?size:${table.importedKeys.associatedTables?size}
+<#--
+<#list table.importedKeys.associatedTables as a>
+	key:${key} === value:${value}
+</#list>
+-->
+
+table.importedKeys.foreignKeyMap?size:${table.importedKeys.foreignKeyMap?size}
+<#list table.importedKeys.foreignKeyMap?keys as key>
+	key:${key} -- tableName:${tableMap['tableName_'+key].className}    === value:${table.importedKeys.foreignKeyMap[key].pkTableName}
+</#list>
+
+table.columns
+<#list table.columns as c>
+	
+	c.remarks:${c.remarks}
+	c.javaType: ${c.javaType}
+	c.sqlType: ${c.sqlType}
+	c.sqlName: ${c.sqlName}
+	c.isPK: ${c.isPK?string!"无"}
+	c.isFK: ${c.isFK?string}
+	c.columnName: ${c.columnName?string}
+	c.testData: ${c.testData?string}
+</#list>
+
+
+外键==
+table.importedKeys.parentTable.className:${table.importedKeys.parentTable.className}  
+table.exportedKeys.parentTable.className:${table.importedKeys.parentTable.className}  
+<!--  generator-insert-location -->
+
+
