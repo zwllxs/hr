@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zwlsoft.service.DestService;
-import com.zwlsoft.service.dao.BizDestDao;
+import com.zwlsoft.service.dao.RoleDao;
 @Service
 public class DestServiceImpl implements DestService {
 
 	private static final Log LOG = LogFactory.getLog(DestServiceImpl.class);
 
 	@Autowired
-	private BizDestDao bizDestDao;
+	private RoleDao bizDestDao;
 
 	@Override
 	public void findDestList(Map<String, Object> param) {

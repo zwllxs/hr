@@ -1,0 +1,28 @@
+
+<!-- 定义方言管理器bean,会被自定义分页拦截器OffsetLimitInterceptor类引用，故,这里需要定义 -->
+<bean id="mybatisDefaultDialectManager" class="com.harmony.framework.dao.mybatis.dialect.DefaultDialectManager">
+		<property name="dialects">
+			<map>
+				<entry>
+					<key><value>db2</value></key>
+					<bean class="com.harmony.framework.dao.mybatis.dialect.DB2Dialect" />
+				</entry>
+				<entry>
+					<key><value>mysql</value></key>
+					<bean class="com.harmony.framework.dao.mybatis.dialect.MySQLDialect" />
+				</entry>
+				<entry>
+					<key><value>oracle</value></key>
+					<bean class="com.harmony.framework.dao.mybatis.dialect.OracleDialect" />
+				</entry>
+				<entry>
+					<key><value>sqlServer2005</value></key>
+					<bean class="com.harmony.framework.dao.mybatis.dialect.SQLServer2005Dialect" />
+				</entry>
+				<entry>
+					<key><value>sqlServer</value></key>
+					<bean class="com.harmony.framework.dao.mybatis.dialect.SQLServerDialect" />
+				</entry>
+			</map>
+		</property>
+	</bean>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.zwlsoft.action.BusinessException;
 import com.zwlsoft.service.CategoryService;
-import com.zwlsoft.service.dao.BizDestDao;
+import com.zwlsoft.service.dao.RoleDao;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 	private static final Log LOG = LogFactory.getLog(CategoryServiceImpl.class);
 
 	@Autowired
-	BizDestDao bizDestDao;
+	RoleDao bizDestDao;
 
 	@Override
 	public void findCategoryList(Map<String, Object> params) throws BusinessException {

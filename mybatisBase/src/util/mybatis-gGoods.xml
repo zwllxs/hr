@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsj.shoppingCenter.domain.GGoods">
+	<resultMap id="gGoodsResultMap" type="com.zsj.shoppingCenter.domain.GGoods">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="appvChangeInfo" property="appvchangeinfo" jdbcType="VARCHAR" />
+		<result column="appvDesc" property="appvdesc" jdbcType="VARCHAR" />
+		<result column="appvIntro" property="appvintro" jdbcType="VARCHAR" />
+		<result column="appvName" property="appvname" jdbcType="VARCHAR" />
+		<result column="bestUpdate" property="bestupdate" jdbcType="TIMESTAMP" />
+		<result column="commentCount" property="commentcount" jdbcType="INTEGER" />
+		<result column="datPath" property="datpath" jdbcType="VARCHAR" />
+		<result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+		<result column="goodsSn" property="goodssn" jdbcType="VARCHAR" />
+		<result column="hotUpdate" property="hotupdate" jdbcType="TIMESTAMP" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="isAloneSale" property="isalonesale" jdbcType="VARCHAR" />
+		<result column="isBest" property="isbest" jdbcType="VARCHAR" />
+		<result column="isCheck" property="ischeck" jdbcType="VARCHAR" />
+		<result column="isDelete" property="isdelete" jdbcType="VARCHAR" />
+		<result column="isHot" property="ishot" jdbcType="VARCHAR" />
+		<result column="isNew" property="isnew" jdbcType="VARCHAR" />
+		<result column="isOnSale" property="isonsale" jdbcType="INTEGER" />
+		<result column="lastUpdate" property="lastupdate" jdbcType="TIMESTAMP" />
+		<result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+		<result column="newUpdate" property="newupdate" jdbcType="TIMESTAMP" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+		<result column="pub_Time" property="pubTime" jdbcType="TIMESTAMP" />
+		<result column="size" property="size" jdbcType="INTEGER" />
+		<result column="sortOrder" property="sortorder" jdbcType="VARCHAR" />
+		<result column="sourcePath" property="sourcepath" jdbcType="VARCHAR" />
+		<result column="star" property="star" jdbcType="INTEGER" />
+		<result column="starCount" property="starcount" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="updaId" property="updaid" jdbcType="INTEGER" />
+		<result column="updaTime" property="updatime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<!-- 表名 -->
+	<sql id="tableNameSql">
+		g_goods 
+	</sql>
+
+	<!-- 用于select查询、insert的公用抽取的列 -->
+	<sql id="commonSelectColumnsPrefix">
+        	id ,
+        	addTime ,
+        	appvChangeInfo ,
+        	appvDesc ,
+        	appvIntro ,
+        	appvName ,
+        	bestUpdate ,
+        	commentCount ,
+        	datPath ,
+        	goodsName ,
+        	goodsSn ,
+        	hotUpdate ,
+        	icon ,
+        	isAloneSale ,
+        	isBest ,
+        	isCheck ,
+        	isDelete ,
+        	isHot ,
+        	isNew ,
+        	isOnSale ,
+        	lastUpdate ,
+        	manufacturer ,
+        	newUpdate ,
+        	price ,
+        	pub_Time ,
+        	size ,
+        	sortOrder ,
+        	sourcePath ,
+        	star ,
+        	starCount ,
+        	state ,
+        	updaId ,
+        	updaTime 
+	</sql>
+
+	<!-- 按主键查找条件语句 -->
+	<sql id="conditionOnlyId">
+		id = #{id}
+	</sql>
+	
+	<sql id="mainSql">
+		SELECT
+			<include refid="commonSelectColumnsPrefix"/>
+		FROM
+			<include refid="tableNameSql"/> p
+	</sql>
+
+	<sql id="varSql">
+		<where>
+			<if test="appvchangeinfo!=null and appvchangeinfo!=''">and p.appvChangeInfo like #{appvchangeinfo} </if>
+			<if test="appvdesc!=null and appvdesc!=''">and p.appvDesc like #{appvdesc} </if>
+			<if test="appvintro!=null and appvintro!=''">and p.appvIntro like #{appvintro} </if>
+			<if test="appvname!=null and appvname!=''">and p.appvName like #{appvname} </if>
+			<if test="datpath!=null and datpath!=''">and p.datPath like #{datpath} </if>
+			<if test="goodsname!=null and goodsname!=''">and p.goodsName like #{goodsname} </if>
+			<if test="goodssn!=null and goodssn!=''">and p.goodsSn like #{goodssn} </if>
+			<if test="icon!=null and icon!=''">and p.icon like #{icon} </if>
+			<if test="isalonesale!=null and isalonesale!=''">and p.isAloneSale like #{isalonesale} </if>
+			<if test="isbest!=null and isbest!=''">and p.isBest like #{isbest} </if>
+			<if test="ischeck!=null and ischeck!=''">and p.isCheck like #{ischeck} </if>
+			<if test="isdelete!=null and isdelete!=''">and p.isDelete like #{isdelete} </if>
+			<if test="ishot!=null and ishot!=''">and p.isHot like #{ishot} </if>
+			<if test="isnew!=null and isnew!=''">and p.isNew like #{isnew} </if>
+			<if test="manufacturer!=null and manufacturer!=''">and p.manufacturer like #{manufacturer} </if>
+			<if test="sortorder!=null and sortorder!=''">and p.sortOrder like #{sortorder} </if>
+			<if test="sourcepath!=null and sourcepath!=''">and p.sourcePath like #{sourcepath} </if>
+		</where>
+	</sql>
+
+	<select id="findPageBy" parameterType="java.util.Map" resultMap="gGoodsResultMap">
+ 		<include refid="mainSql"/>
+ 		<include refid="varSql"/>
+		<if test="SORT != null and SORT != ''">
+ 			order by ${SORT}
+ 			<if test="DIR != null and DIR != ''">
+ 				 ${DIR}
+ 			</if>
+ 		</if>
+	</select>
+
+	<select id="getById" parameterType="String" resultMap="gGoodsResultMap">
+		<include refid="mainSql"/>
+		where <include refid="conditionOnlyId"/>
+	</select>
+
+	<select id="getCountBy" parameterType="java.util.Map" resultType="INTEGER">
+		SELECT
+			COUNT(*) AS C
+		FROM
+			<include refid="tableNameSql"/> p
+		<include refid="varSql"/>
+	</select>
+
+	<select id="findListBy" parameterType="java.util.Map" resultMap="gGoodsResultMap">
+		<include refid="mainSql"/>
+		<include refid="varSql"/>
+	</select>
+
+	<insert id="save" parameterType="com.zsj.shoppingCenter.domain.GGoods">
+		insert into
+			<include refid="tableNameSql"/>
+		(
+			<include refid="commonSelectColumnsPrefix"/>
+		)
+		values
+		(
+			#{id, jdbcType=INTEGER} ,
+			#{addtime, jdbcType=TIMESTAMP} ,
+			#{appvchangeinfo, jdbcType=VARCHAR} ,
+			#{appvdesc, jdbcType=VARCHAR} ,
+			#{appvintro, jdbcType=VARCHAR} ,
+			#{appvname, jdbcType=VARCHAR} ,
+			#{bestupdate, jdbcType=TIMESTAMP} ,
+			#{commentcount, jdbcType=INTEGER} ,
+			#{datpath, jdbcType=VARCHAR} ,
+			#{goodsname, jdbcType=VARCHAR} ,
+			#{goodssn, jdbcType=VARCHAR} ,
+			#{hotupdate, jdbcType=TIMESTAMP} ,
+			#{icon, jdbcType=VARCHAR} ,
+			#{isalonesale, jdbcType=VARCHAR} ,
+			#{isbest, jdbcType=VARCHAR} ,
+			#{ischeck, jdbcType=VARCHAR} ,
+			#{isdelete, jdbcType=VARCHAR} ,
+			#{ishot, jdbcType=VARCHAR} ,
+			#{isnew, jdbcType=VARCHAR} ,
+			#{isonsale, jdbcType=INTEGER} ,
+			#{lastupdate, jdbcType=TIMESTAMP} ,
+			#{manufacturer, jdbcType=VARCHAR} ,
+			#{newupdate, jdbcType=TIMESTAMP} ,
+			#{price, jdbcType=INTEGER} ,
+			#{pubTime, jdbcType=TIMESTAMP} ,
+			#{size, jdbcType=INTEGER} ,
+			#{sortorder, jdbcType=VARCHAR} ,
+			#{sourcepath, jdbcType=VARCHAR} ,
+			#{star, jdbcType=INTEGER} ,
+			#{starcount, jdbcType=INTEGER} ,
+			#{state, jdbcType=INTEGER} ,
+			#{updaid, jdbcType=INTEGER} ,
+			#{updatime, jdbcType=TIMESTAMP} 
+		)
+	</insert>
+
+	<update id="update" parameterType="com.zsj.shoppingCenter.domain.GGoods">
+		update
+			<include refid="tableNameSql"/>
+		set
+			addTime = #{addtime, jdbcType=TIMESTAMP} ,
+			appvChangeInfo = #{appvchangeinfo, jdbcType=VARCHAR} ,
+			appvDesc = #{appvdesc, jdbcType=VARCHAR} ,
+			appvIntro = #{appvintro, jdbcType=VARCHAR} ,
+			appvName = #{appvname, jdbcType=VARCHAR} ,
+			bestUpdate = #{bestupdate, jdbcType=TIMESTAMP} ,
+			commentCount = #{commentcount, jdbcType=INTEGER} ,
+			datPath = #{datpath, jdbcType=VARCHAR} ,
+			goodsName = #{goodsname, jdbcType=VARCHAR} ,
+			goodsSn = #{goodssn, jdbcType=VARCHAR} ,
+			hotUpdate = #{hotupdate, jdbcType=TIMESTAMP} ,
+			icon = #{icon, jdbcType=VARCHAR} ,
+			isAloneSale = #{isalonesale, jdbcType=VARCHAR} ,
+			isBest = #{isbest, jdbcType=VARCHAR} ,
+			isCheck = #{ischeck, jdbcType=VARCHAR} ,
+			isDelete = #{isdelete, jdbcType=VARCHAR} ,
+			isHot = #{ishot, jdbcType=VARCHAR} ,
+			isNew = #{isnew, jdbcType=VARCHAR} ,
+			isOnSale = #{isonsale, jdbcType=INTEGER} ,
+			lastUpdate = #{lastupdate, jdbcType=TIMESTAMP} ,
+			manufacturer = #{manufacturer, jdbcType=VARCHAR} ,
+			newUpdate = #{newupdate, jdbcType=TIMESTAMP} ,
+			price = #{price, jdbcType=INTEGER} ,
+			pub_Time = #{pubTime, jdbcType=TIMESTAMP} ,
+			size = #{size, jdbcType=INTEGER} ,
+			sortOrder = #{sortorder, jdbcType=VARCHAR} ,
+			sourcePath = #{sourcepath, jdbcType=VARCHAR} ,
+			star = #{star, jdbcType=INTEGER} ,
+			starCount = #{starcount, jdbcType=INTEGER} ,
+			state = #{state, jdbcType=INTEGER} ,
+			updaId = #{updaid, jdbcType=INTEGER} ,
+			updaTime = #{updatime, jdbcType=TIMESTAMP} 
+		where <include refid="conditionOnlyId"/>
+	</update>
+
+	<delete id="deleteByIds" parameterType="Object[]">
+		delete from <include refid="tableNameSql"/> 
+		where id in <foreach index="index" item="item" collection="array" separator="," open="(" close=")" >#{item}</foreach>
+	</delete>
+
+	<delete id="deleteById" parameterType="Object">
+		delete from <include refid="tableNameSql"/> where <include refid="conditionOnlyId"/>
+	</delete>
+
+</mapper>
