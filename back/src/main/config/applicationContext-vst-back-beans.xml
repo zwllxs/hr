@@ -30,5 +30,5 @@
 	
 	<!-- 手动按类型注入文件服务 -->
 	
-	<import resource="classpath*:applicationContext-vst-back-database.xml" />
+<!-- 	<import resource="classpath*:applicationContext-vst-back-database.xml" /> -->
 </beans>
