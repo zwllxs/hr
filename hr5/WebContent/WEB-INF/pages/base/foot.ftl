@@ -1,0 +1,14 @@
+<script type="text/javascript" src="/vst_back/js/iframe-custom.js"></script>
+<script type="text/javascript" src="/vst_back/js/pandora-dialog.js"></script>
+<script type="text/javascript" src="/vst_back/js/lvmama-dialog.js"></script>
+<script type="text/javascript" src="/vst_back/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/vst_back/js/jquery.validate.expand.js"></script>
+<script type="text/javascript" src="/vst_back/js/messages_zh.js"></script>
+<script type="text/javascript" src="/vst_back/js/vst_validate.js"></script>
+<script type="text/javascript" src="/vst_back/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/vst_back/js/jquery.lvtip.js"></script>
+<script type="text/javascript" src="/vst_back/js/newpanel.js"></script>
+<script type="text/javascript" src="/vst_back/js/jquery.jsonSuggest-2.min.js"></script>
+<script type="text/javascript" src="/vst_back/js/vst_pet_util.js"></script>
+<script type="text/javascript" src="/vst_back/js/vst_util.js"></script>
+<script type="text/javascript" src="/vst_back/js/log.js"></script>
