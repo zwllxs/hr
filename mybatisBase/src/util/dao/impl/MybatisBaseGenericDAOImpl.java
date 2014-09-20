@@ -1,14 +1,10 @@
 package util.dao.impl;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.session.ResultHandler;
-import org.apache.ibatis.session.RowBounds;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import util.bean.BeanMapUtil;
 import util.dao.IBaseGenericDAO;

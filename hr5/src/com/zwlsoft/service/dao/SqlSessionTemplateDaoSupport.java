@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author wenzhengtao
  *
  */
-public class SqlSessionTemplateDaoSupport {
+public class SqlSessionTemplateDaoSupport<T> { 
 
 	protected SqlSessionTemplate sqlSession;
 	protected boolean externalSqlSession;

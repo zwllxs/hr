@@ -3,6 +3,7 @@
 	<name>hr5</name>
 	<comment></comment>
 	<projects>
+		<project>zwl_page</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

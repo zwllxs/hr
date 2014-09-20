@@ -2,6 +2,11 @@ package com.zwlsoft.service.dao4;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 /**
  * 基于Mybatis的基础DAO接口
@@ -9,23 +14,23 @@ import java.util.List;
  * @author 赵士杰
  * 
  * @param <T> 业务实体类型
- * @param <ID> ID类型 ，如：String、Long、Integer 等
+ * @param <Id> Id类型 ，如：String、Long、Integer 等
  */
-public interface IBaseGenericDAO<T, ID extends Serializable> {
+public interface IBaseGenericDAO<T> {
 
     /**
      * 保存（持久化）对象
      * @param o 要持久化的对象
      * @return 执行成功的记录个数
      */
-	public Integer save(T ob);
+	public Integer save(T t);
 
     /**
      * 更新（持久化）对象
      * @param o 要持久化的对象
      * @return 执行成功的记录个数
      */
-	public Integer update(T ob);
+	public Integer update(T t);
 
     /**
      * 获取指定的唯一标识符对应的持久化对象
@@ -33,53 +38,49 @@ public interface IBaseGenericDAO<T, ID extends Serializable> {
      * @param id 指定的唯一标识符
      * @return 指定的唯一标识符对应的持久化对象，如果没有对应的持久化对象，则返回null。
      */
-	public T getById(String id);
+	public T getById(Serializable id);
 
     /**
      * 删除指定的唯一标识符对应的持久化对象
      *
-     * @param id 指定的唯一标识符
+     * @param Id 指定的唯一标识符
 	 * @return 删除的对象数量
      */
-	public Integer deleteById(ID id);
+	public Integer deleteById(Serializable Id);
 
     /**
      * 删除指定的唯一标识符数组对应的持久化对象
      *
-     * @param ids 指定的唯一标识符数组
+     * @param Ids 指定的唯一标识符数组
 	 * @return 删除的对象数量
      */
-	public Integer deleteByIds(ID[] ids);
+	public Integer deleteByIds(Serializable[] Ids);
 
-	/**
-	 * 分页查询
-	 * 
-	 * @param param 查询参数
-	 * @param pageNo 要查询的页号
-	 * @param pageSize 每页数据个数
-	 * @param sort 排序字段名
-	 * @param dir 排序方式（升序(asc)或降序(desc)
-	 * @return 查询结果分页数据
-	 */
-	public IGenericPage<T> findPageBy(
-			T param, int pageNo, int pageSize, String sort, String dir);
+    Map selectMap(String statement, String mapKey);
 
-	/**
-	 * 获取满足查询参数条件的数据总数
-	 * 
-	 * @param param 查询参数
-	 * @return 数据总数
-	 */
-	public Integer getCountBy(T param);
+    int update(String statement);
 
-	/**
-	 * 不分页查询
-	 * 
-	 * @param param 查询参数
-	 * @param sort 排序字段名
-	 * @param dir 排序方式（升序(asc)或降序(desc)
-	 * @return 查询结果列表
-	 */
-	public List<T> findListBy(T param, String sort, String dir);
+    int insert(String statement, Object parameter);
+
+    int insert(String statement);
+
+    int update(String statement, Object parameter);
+
+    int delete(String statement, Object parameter);
+
+    int delete(String statement);
+
+    List<T> selectList(String statement, Object parameter);
+
+    List<T> selectList(String statement);
+
+    Object selectOne(String statement, Object parameter);
+
+    Object selectOne(String statement);
+
+    Map selectMap(String statement, Object parameter, String mapKey,
+            RowBounds rowBounds);
+
+    Map selectMap(String statement, Object parameter, String mapKey);
 
 }

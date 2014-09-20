@@ -45,6 +45,7 @@ public class ServiceImpl<Entity1> implements Service<Entity1>
     public ServiceImpl()
     {
         entityClass =(Class)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]; 
+        System.out.println("entityClass: "+entityClass);
     }
     
     

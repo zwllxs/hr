@@ -4,12 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    
-<!-- 	<settings>   -->
-<!--         <setting name="logImpl" value="log4j"/>   -->
-<!--     </settings>   -->
-	
-    <typeAliases>
-		<!-- <typeAlias alias="role" type="com.lvmama.vst.back.category.po.Role" /> -->
-	</typeAliases> 
+
+	<settings>
+		<setting name="logImpl" value="log4j" />
+	</settings>
+
+	<typeAliases>
+		<package name="com.zwlsoft.po" />
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins>
 </configuration>

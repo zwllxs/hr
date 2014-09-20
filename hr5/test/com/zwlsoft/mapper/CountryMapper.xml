@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwlsoft.po.Country">
+  <select id="selectAll" resultType="Country">
+    select * from country
+  </select>
+
+  <select id="selectGreterThanId" resultType="Country">
+    select * from country where id &gt;#{id}
+  </select>
+
+  <select id="selectByLike" resultType="Country" parameterType="Country" >
+    select * from country where countryname like '%#{countryname,jdbcType=VARCHAR}%'
+  </select>
+
+  <select id="selectGreterThanIdAndNotEquelContryname" resultType="Country">
+    select a.* from country a left join country b on a.id = b.id where a.id &gt;#{id} and b.countryname &lt;&gt; #{countryname} order by a.id
+  </select>
+
+  <select id="selectAllOrderby" resultType="Country">
+      select * from country order by countrycode desc
+  </select>
+
+  <select id="selectAllOrderByParams" resultType="Country">
+    select * from country order by ${order1} desc,${order2} asc
+  </select>
+
+  <select id="selectByMap" resultType="Country" parameterType="java.util.Map">
+    select * from country  
+    <where>
+		<foreach collection="params.keys" item="k" index="index"
+			separator=" and ">
+ 			<if test="null!=params[k]">  
+<!--   				${k}=${params[k]} 直接拼接的  -->
+<!-- 					${k} = #{k}    -->
+				${k} = #{params[${k}]}  
+ 			</if>  
+		</foreach>   
+	</where>
+  </select>
+  
+  
+
+<!--   <select id="selectByDemo" resultType="Country" parameterType="Country"> -->
+<!--     select * from country  where countryname = #{keyValuesMap} -->
+<!--   </select> -->
+  
+
+<!-- 直接自带keyValues -->
+  <select id="selectByMap2" resultType="Country" parameterType="java.util.Map">
+    select * from country   
+    <where>
+		<foreach collection="keyValuesMap.keys" item="k" index="index"
+			separator=" and ">
+ 			<if test="null!=keyValuesMap[k]">  
+				${k} = #{keyValuesMap[${k}]}  
+ 			</if>  
+		</foreach>
+	</where>
+  </select>
+</mapper>
