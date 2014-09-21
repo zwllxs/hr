@@ -13,15 +13,15 @@
   </select>
 
   <select id="selectByLike" resultType="Country" parameterType="Country" >
-    select * from country where countryname like '%#{countryname,jdbcType=VARCHAR}%'
+    select * from country where country_name like '%#{country_name,jdbcType=VARCHAR}%'
   </select>
 
   <select id="selectGreterThanIdAndNotEquelContryname" resultType="Country">
-    select a.* from country a left join country b on a.id = b.id where a.id &gt;#{id} and b.countryname &lt;&gt; #{countryname} order by a.id
+    select a.* from country a left join country b on a.id = b.id where a.id &gt;#{id} and b.country_name &lt;&gt; #{country_name} order by a.id
   </select>
 
   <select id="selectAllOrderby" resultType="Country">
-      select * from country order by countrycode desc
+      select * from country order by country_code desc
   </select>
 
   <select id="selectAllOrderByParams" resultType="Country">
@@ -45,18 +45,19 @@
   
 
 <!--   <select id="selectByDemo" resultType="Country" parameterType="Country"> -->
-<!--     select * from country  where countryname = #{keyValuesMap} -->
+<!--     select * from country  where country_name = #{keyValuesMap} -->
 <!--   </select> -->
   
 
 <!-- 直接自带keyValues -->
   <select id="selectByMap2" resultType="Country" parameterType="java.util.Map">
-    select * from country   
+    select * from country  
     <where>
 		<foreach collection="keyValuesMap.keys" item="k" index="index"
 			separator=" and ">
  			<if test="null!=keyValuesMap[k]">  
-				${k} = #{keyValuesMap[${k}]}  
+<!-- 				${k} = #{keyValuesMap[${k}][name]}   -->
+				${k}  ${@Ognl@getSignMap(signMap,k)}  ${@Ognl@getMybatisSqlValueType(keyValuesMap,k)}
  			</if>  
 		</foreach>
 	</where>

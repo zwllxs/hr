@@ -1,5 +1,6 @@
 package com.zwlsoft.service.dao4;
 
+import java.beans.IntrospectionException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
@@ -10,7 +11,11 @@ import java.util.Map;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.ibatis.session.RowBounds;
 
+import com.zwlsoft.exception.UnsupportDataTypeException;
+import com.zwlsoft.po.AbstractEntity;
+import com.zwlsoft.po.Entity;
 import com.zwlsoft.service.dao.SqlSessionTemplateDaoSupport;
+import com.zwlsoft.utils.DaoUtil;
 
 
 /**
@@ -275,31 +280,37 @@ public class MyIbatisBaseDao<T> extends SqlSessionTemplateDaoSupport implements 
      * 
      * @param statement
      *            映射的语句ID
-     * @param parameter
+     * @param objParam
      *            参数
      * @return 查询结果列表
      * @see org.apache.ibatis.session.SqlSession#selectList(java.lang.String,
      *      java.lang.Object)
      */
     @Override
-    public List<T> selectList(String statement, Object parameter)
+    public List<T> selectList(String statement, Object objParam)
     {
-        Map<String, Object> map2=new HashMap<>();
-        Map<String, Object> map=null;
+            return this.getSqlSession()
+                    .selectList(getSqlName(statement), objParam);
+    }
+    
+    @Override
+    public List<T> selectListByExample(String statement, AbstractEntity abstractEntity)
+    {
         try
         {
-            map = (Map<String, Object>) MethodUtils.invokeMethod(parameter, "getKeyValuesMap", null);
+            Map<String, Object> map2=DaoUtil.getKeyValuesMap(abstractEntity);
+            map2.put(DaoConstant.keyValuesMapKey, DaoUtil.getStatementKeyValuesMap(abstractEntity));
+            return this.getSqlSession()
+                    .selectList(getSqlName(statement), map2);
         }
-        catch (NoSuchMethodException | IllegalAccessException
-                | InvocationTargetException e)
+        catch (IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException | NoSuchFieldException
+                | SecurityException | IntrospectionException
+                | UnsupportDataTypeException | NoSuchMethodException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        map2.put("keyValuesMap", map);
-        
-        return this.getSqlSession()
-                .selectList(getSqlName(statement), map2);
+        return null;
     }
 
     /**

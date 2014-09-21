@@ -1,6 +1,5 @@
 package com.zwlsoft.po;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,11 +7,11 @@ import java.util.Date;
  * @author liwenzhan
  *
  */
-public class PayPayment extends AbstractEntity implements Serializable {
+public class PayPayment //extends AbstractEntity implements Serializable 
+{
 	/**
 	 * 序列化ID.
 	 */
-	private static final long serialVersionUID = -1327340076428874632L;
 	/**
 	 * 
 	 */

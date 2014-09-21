@@ -1,71 +1,93 @@
 package com.zwlsoft.po;
 
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractEntity
+import com.zwlsoft.utils.DaoUtil;
+
+
+public abstract class AbstractEntity implements Entity
 {
-    private Field[] fieldArr;
-
-    private Map<String, Object> keyValuesMap =null;
-
-    protected Field[] setAllMethodList()
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Map<String, String> signMap=null;
+    public void putSignMap(String key,String value)
     {
-        Field[] field = this.getClass().getDeclaredFields(); // 获取实体类的所有属性，返回Field数组
-        this.fieldArr = field;
-        return field;
-    }
-
-    public void buildKeyValues() throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-    {
-        if (null==keyValuesMap)
+        if (null==signMap)
         {
-            keyValuesMap = new HashMap<String, Object>();
+            signMap=new HashMap<String, String>();
         }
-        else
-        {
-            return;
-        }
-        for (Field field : fieldArr)
-        {
-            PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
-                    this.getClass());
-            Method getMethod = pd.getReadMethod();// 获得get方法
-            Object o = getMethod.invoke(this);// 执行get方法返回一个Object
-            System.out.println("o: "+o);
-//            if (o instanceof Integer)
-//            {
-//                System.out.println("int类型");
-//            }
-//            else
-//            {
-                keyValuesMap.put(field.getName(), o);
-//            }
-        }
+        signMap.put(DaoUtil.getColumnName(key), value);
     }
-
-    public Map<String, Object> getKeyValuesMap() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+    public Map<String, String> getSignMap()
     {
-        System.out.println("getKeyValuesMap调用 : ");
-        if (null==keyValuesMap)
-        {
-            buildKeyValues();
-        }
-        return keyValuesMap;
+        return signMap;
     }
-
-    public Field[] getFieldArr()
-    {
-        return fieldArr;
-    }
-
-    public void setKeyValuesMap(Map<String, Object> keyValuesMap)
-    {
-        this.keyValuesMap = keyValuesMap;
-    }
+//    public void setSignMap(Map<String, String> signMap)
+//    {
+//        this.signMap = signMap;
+//    }
+    
+    
+//    private Field[] fieldArr;
+//
+//    private Map<String, Object> keyValuesMap =null;
+//
+//    protected Field[] setAllMethodList()
+//    {
+//        Field[] field = this.getClass().getDeclaredFields(); // 获取实体类的所有属性，返回Field数组
+//        this.fieldArr = field;
+//        return field;
+//    }
+//
+//    public void buildKeyValues() throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+//    {
+//        if (null==keyValuesMap)
+//        {
+//            keyValuesMap = new HashMap<String, Object>();
+//        }
+//        else
+//        {
+//            return;
+//        }
+//        for (Field field : fieldArr)
+//        {
+//            PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
+//                    this.getClass());
+//            Method getMethod = pd.getReadMethod();// 获得get方法
+//            Object o = getMethod.invoke(this);// 执行get方法返回一个Object
+//            System.out.println("o: "+o);
+////            if (o instanceof Integer)
+////            {
+////                System.out.println("int类型");
+////            }
+////            else
+////            {
+//                keyValuesMap.put(field.getName(), o);
+////            }
+//        }
+//    }
+//
+//    public Map<String, Object> getKeyValuesMap() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+//    {
+//        System.out.println("getKeyValuesMap调用 : ");
+//        if (null==keyValuesMap)
+//        {
+//            buildKeyValues();
+//        }
+//        return keyValuesMap;
+//    }
+//
+//    public Field[] getFieldArr()
+//    {
+//        return fieldArr;
+//    }
+//
+//    public void setKeyValuesMap(Map<String, Object> keyValuesMap)
+//    {
+//        this.keyValuesMap = keyValuesMap;
+//    }
 }

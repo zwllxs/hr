@@ -12,10 +12,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.github.pagehelper.PageHelper;
+import com.zwlsoft.exception.UnsupportDataTypeException;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.service.CountryService;
 import com.zwlsoft.service.dao4.MyIbatisBaseDao;
 import com.zwlsoft.service.impl.CountryServiceImpl;
+import com.zwlsoft.utils.DaoUtil;
 
 public class DaoTest
 {
@@ -56,7 +58,7 @@ public class DaoTest
     public void test2()
     {
         Country country = new Country();
-        country.setCountryname("Co");
+        country.setCountryName("Co");
 //        List<Country> countryList = countryService.selectList("selectByLike",
 //                country);
 //        System.out.println("countryList: "+countryList);
@@ -95,11 +97,11 @@ public class DaoTest
     public void testSelectDemo() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
     {
         Country country=new Country();
-        country.setCountrycode("AI");
-        country.setCountryname("Anguilla");
+        country.setCountryCode("AI");
+        country.setCountryName("Anguilla");
         country.setId(6);
-        country.buildKeyValues();
-        List<Country> countryList2 = countryService.selectList("selectByDemo",
+//        country.buildKeyValues();
+        List<Country> countryList2 = countryService.selectListByExample("selectByDemo",
                 country);
         System.out.println("countryList2: "+countryList2);
     }
@@ -109,15 +111,14 @@ public class DaoTest
     {
         
         Country country=new Country();
-        country.setCountrycode("AI");
-//        country.setCountryname("Anguilla");
-        country.setId(6);
+//        country.setCountryCode("AI");
+//        country.setCountryName("Anguilla");
+        country.setId(33);
+        country.putSignMap("id", "<");
         
-        System.out.println("keyValuesMap: "+country.getKeyValuesMap());
-        
-        List<Country> countryList2 = countryService.selectList("selectByMap2",
+        PageHelper.startPage(2, 12);
+        List<Country> countryList2 = countryService.selectListByExample("selectByMap2",
                 country);
         System.out.println("countryList2: "+countryList2);
     }
-
 }

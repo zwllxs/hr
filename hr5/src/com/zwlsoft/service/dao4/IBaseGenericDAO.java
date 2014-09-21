@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
+import com.zwlsoft.po.AbstractEntity;
+import com.zwlsoft.po.Entity;
 
 /**
  * 基于Mybatis的基础DAO接口
@@ -70,6 +72,8 @@ public interface IBaseGenericDAO<T> {
 
     int delete(String statement);
 
+    List<T> selectListByExample(String statement, AbstractEntity abstractEntity);
+    
     List<T> selectList(String statement, Object parameter);
 
     List<T> selectList(String statement);
