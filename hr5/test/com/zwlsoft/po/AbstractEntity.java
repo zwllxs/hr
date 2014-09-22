@@ -1,8 +1,10 @@
 package com.zwlsoft.po;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.zwlsoft.service.dao4.MyBatisType;
 import com.zwlsoft.utils.DaoUtil;
 
 
@@ -14,6 +16,15 @@ public abstract class AbstractEntity implements Entity
      */
     private static final long serialVersionUID = 1L;
     private Map<String, String> signMap=null;
+    /**
+     * 用来生成所有字段
+     */
+    private List<MyBatisType> allMybatisTypeList=null;
+    /**
+     * 用来生成有值的字段
+     */
+    private List<MyBatisType> hasValueMybatisTypeList=null;
+    
     public void putSignMap(String key,String value)
     {
         if (null==signMap)
@@ -30,7 +41,24 @@ public abstract class AbstractEntity implements Entity
 //    {
 //        this.signMap = signMap;
 //    }
-    
+    public List<MyBatisType> getAllMybatisTypeList()
+    {
+        return allMybatisTypeList;
+    }
+    public void setAllMybatisTypeList(List<MyBatisType> allMybatisTypeList)
+    {
+        this.allMybatisTypeList = allMybatisTypeList;
+    }
+    public List<MyBatisType> getHasValueMybatisTypeList()
+    {
+        return hasValueMybatisTypeList;
+    }
+    public void setHasValueMybatisTypeList(List<MyBatisType> hasValueMybatisTypeList)
+    {
+        this.hasValueMybatisTypeList = hasValueMybatisTypeList;
+    }
+     
+ 
     
 //    private Field[] fieldArr;
 //

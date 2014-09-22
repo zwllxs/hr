@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.zwlsoft.service.dao4.NotCloumn;
+
 /**
  * Description: Country Author: liuzh Update: liuzh(2014-06-06 13:38)
  */
@@ -16,10 +18,13 @@ public class Country extends AbstractEntity
      */
     private static final long serialVersionUID = 1L;
     private Integer id;
+    
+    @NotCloumn
     private Integer id2;
     private String countryName;
     private String countryCode;
     
+    @NotCloumn
     private Date date;//=new Date();
     private List<Role> roleList=new ArrayList<Role>();
     private Set<String> strSet=new HashSet<>();

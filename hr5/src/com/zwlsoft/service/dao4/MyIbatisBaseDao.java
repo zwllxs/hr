@@ -298,15 +298,19 @@ public class MyIbatisBaseDao<T> extends SqlSessionTemplateDaoSupport implements 
     {
         try
         {
-            Map<String, Object> map2=DaoUtil.getKeyValuesMap(abstractEntity);
-            map2.put(DaoConstant.keyValuesMapKey, DaoUtil.getStatementKeyValuesMap(abstractEntity));
+            //以下为map方式 生成动态语句 
+//            Map<String, Object> map2=DaoUtil.getKeyValuesMap(abstractEntity);
+//            map2.put(DaoConstant.keyValuesMapKey, DaoUtil.getStatementKeyValuesMap(abstractEntity));
+//            return this.getSqlSession()
+//                    .selectList(getSqlName(statement), map2);
+            //以下为以list方式 生成动态语句的
+            DaoUtil.setMyBatisType(abstractEntity);
             return this.getSqlSession()
-                    .selectList(getSqlName(statement), map2);
+                    .selectList(getSqlName(statement), abstractEntity);
         }
         catch (IllegalAccessException | IllegalArgumentException
-                | InvocationTargetException | NoSuchFieldException
-                | SecurityException | IntrospectionException
-                | UnsupportDataTypeException | NoSuchMethodException e)
+                | InvocationTargetException | SecurityException | IntrospectionException
+                | NoSuchMethodException | UnsupportDataTypeException e)
         {
             e.printStackTrace();
         }

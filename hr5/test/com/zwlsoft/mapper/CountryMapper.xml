@@ -62,4 +62,54 @@
 		</foreach>
 	</where>
   </select>
+
+<!-- 直接自带keyValues -->
+<!--   <select id="selectByList" resultType="Country" parameterType="Country"> -->
+  <select id="selectByList" resultType="Country" parameterType="Country">
+    select  
+    	  <include refid="Select_Base_Column_List" />
+     from country  
+     	 <include refid="Where_condition_Column_List" />
+  </select>
+  
+  <!-- 以下为crud构建 -->
+  <!-- 查询字段 -->
+  <sql id="Select_Base_Column_List" >
+    <foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn} ${t.property} 
+	</foreach>
+  </sql>
+  
+  <!-- where 条件 -->
+  <sql id="Where_condition_Column_List" >
+     <where>
+		<foreach collection="hasValueMybatisTypeList" item="t" index="index"
+			separator=" and ">
+				${t.cloumn} ${t.sign}  #{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</where>
+  </sql>
+  
+  <!-- 字段列表 -->
+  <sql id="All_Column_List" >
+     <where>
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+				${t.cloumn} 
+		</foreach>
+	</where>
+  </sql>
+  
+  <!-- 字段列表 -->
+  <sql id="All_Type_List" >
+     <where>
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+				#{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</where>
+  </sql>
+  
+  
 </mapper>

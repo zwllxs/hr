@@ -3,7 +3,7 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
-        <dependent-module archiveName="zwl_page.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zwl_page/zwl_page">
+        <dependent-module archiveName="zwl_page2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zwl_page2/zwl_page2">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="hr5"/>

@@ -5,7 +5,9 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.MethodUtils;
@@ -14,6 +16,8 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zwlsoft.exception.UnsupportDataTypeException;
 import com.zwlsoft.service.dao4.DaoConstant;
+import com.zwlsoft.service.dao4.MyBatisType;
+import com.zwlsoft.service.dao4.NotCloumn;
 
 
 
@@ -67,6 +71,7 @@ public class DaoUtil
      * @throws NoSuchFieldException 
      * @throws UnsupportDataTypeException 
      */
+    @Deprecated
     public static Map<String, Map<String, String>> getStatementKeyValuesMap(Object obj) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException, SecurityException, UnsupportDataTypeException 
     {
         Map<String,  Map<String, String>> keyValuesMap=new HashMap<String, Map<String, String>>();
@@ -120,10 +125,18 @@ public class DaoUtil
      * @throws IllegalArgumentException 
      * @throws IllegalAccessException 
      * @throws NoSuchMethodException 
+     * @throws UnsupportDataTypeException 
      */
-    public static Map<String, Object> getKeyValuesMap(Object obj) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException
+    @Deprecated
+    public static Map<String, Object> getKeyValuesMap(Object obj) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, UnsupportDataTypeException
     {
+        
+        List<MyBatisType> myBatisTypeList=new ArrayList<>();
         Map<String, Object>  map=new HashMap<>();
+        Map<String, String> signMap=(Map<String, String>) MethodUtils.invokeMethod(obj, "getSignMap", null);
+//      System.out.println("signMap: "+signMap);
+        map.put(DaoConstant.signMapKey, signMap);
+      
         Field[] fieldArr=getAllFieldList(obj);
         for (Field field : fieldArr)
         {
@@ -132,15 +145,92 @@ public class DaoUtil
                     obj.getClass());
             Method getMethod = pd.getReadMethod();// 获得get方法
             Object o = getMethod.invoke(obj);// 执行get方法返回一个Object
+            checkIsPrimitive(obj,field);  //禁止使用基础类型
             if (null!=o)
             {
-                map.put(field.getName(), o);
+//                System.out.println("类型 : "+o.getClass().getSimpleName());
+                String jdbcType=javaJdbcTypeMap.get(o.getClass().getSimpleName());
+                if (null!=javaJdbcTypeMap.get(o.getClass().getSimpleName()))
+                {
+                    //借道构建下list试试
+                    MyBatisType myBatisType=new MyBatisType();
+                    String sign=signMap.get(field.getName());
+                    myBatisType.setCloumn(getColumnName(field.getName()));
+                    myBatisType.setJdbcType(jdbcType);
+                    myBatisType.setProperty(field.getName());
+                    myBatisType.setSign(StringUtils.isNotEmpty(sign)?sign:"=");
+//                    System.out.println("myBatisType: "+myBatisType);
+                    myBatisTypeList.add(myBatisType);
+                   
+                    map.put(field.getName(), o);
+                }
             }
         }
-        Map<String, String> signMap=(Map<String, String>) MethodUtils.invokeMethod(obj, "getSignMap", null);
-//        System.out.println("signMap: "+signMap);
-        map.put(DaoConstant.signMapKey, signMap);
+        MethodUtils.invokeMethod(obj, "setMyBatisTypeList", myBatisTypeList);
         return map;
+    }
+    
+    /**
+     * 给指定的bean生成 mybatis sql语句中必须的串
+     * @param obj
+     * @throws IntrospectionException
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws InvocationTargetException
+     * @throws NoSuchMethodException
+     * @throws UnsupportDataTypeException 
+     */
+    public static void setMyBatisType(Object obj) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, UnsupportDataTypeException
+    {
+        List<MyBatisType> HasValueMybatisTypeList=new ArrayList<>();//不包括非持久字段
+        List<MyBatisType> allMybatisTypeList=new ArrayList<>();
+        Map<String, String> signMap=(Map<String, String>) MethodUtils.invokeMethod(obj, "getSignMap", null);
+
+        Field[] fieldArr=getAllFieldList(obj);
+        for (Field field : fieldArr)
+        {
+//            System.out.println();
+//            NotCloumn annotaion = field.getAnnotation(NotCloumn.class);
+//            System.out.println("name: "+field.getName()+ ", annotaion: "+annotaion);
+            PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
+                    obj.getClass());
+            Method getMethod = pd.getReadMethod();// 获得get方法
+            Object o = getMethod.invoke(obj);// 执行get方法返回一个Object
+//            System.out.println("o.getClass().getName(): "+o.getClass().getName());
+//            System.out.println("field.getType().getName(): "+field.getType().getName());
+            String classType=field.getType().getSimpleName();
+            
+            checkIsPrimitive(obj,field);  //禁止使用基础类型
+
+//          System.out.println("类型 : "+o.getClass().getSimpleName());
+            String jdbcType=javaJdbcTypeMap.get(classType);
+            if (null!=javaJdbcTypeMap.get(classType))
+            {
+                MyBatisType myBatisType=new MyBatisType();
+                myBatisType.setCloumn(getColumnName(field.getName()));
+                myBatisType.setProperty(field.getName());
+                
+                if (null!=o)
+                {
+                    String sign=signMap.get(field.getName());
+                   
+                    myBatisType.setJdbcType(jdbcType);
+                    myBatisType.setSign(StringUtils.isNotEmpty(sign)?sign:"=");
+//                    System.out.println("myBatisType: "+myBatisType);
+                    HasValueMybatisTypeList.add(myBatisType);
+                }
+                
+                NotCloumn annotaion = field.getAnnotation(NotCloumn.class);
+                if (null==annotaion||!annotaion.value())
+                {
+                    allMybatisTypeList.add(myBatisType);
+                }
+            }
+        }
+        //注入有值的不为空的typeList
+        MethodUtils.invokeMethod(obj, "setHasValueMybatisTypeList", HasValueMybatisTypeList);
+        //注入所有字段与属性的映射对
+        MethodUtils.invokeMethod(obj, "setAllMybatisTypeList", allMybatisTypeList);
     }
     
     private static Map<String, String> getTypeValuesMap(Field field,Object o) throws UnsupportDataTypeException

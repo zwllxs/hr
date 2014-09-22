@@ -11,13 +11,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.github.pagehelper.PageHelper;
-import com.zwlsoft.exception.UnsupportDataTypeException;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.service.CountryService;
-import com.zwlsoft.service.dao4.MyIbatisBaseDao;
-import com.zwlsoft.service.impl.CountryServiceImpl;
-import com.zwlsoft.utils.DaoUtil;
 
 public class DaoTest
 {
@@ -45,7 +40,7 @@ public class DaoTest
         // List<Country> list= dao.selectList("selectAll");
         // System.out.println("list: "+list);
 
-        PageHelper.startPage(1, 10);
+//        PageHelper.startPage(1, 10);
         List<Country> countryList = countryService.selectList("selectAll");
         System.out.println("countryList: " + countryList.size());
 
@@ -112,12 +107,28 @@ public class DaoTest
         
         Country country=new Country();
 //        country.setCountryCode("AI");
-//        country.setCountryName("Anguilla");
+        country.setCountryName("Anguilla");
         country.setId(33);
         country.putSignMap("id", "<");
         
-        PageHelper.startPage(2, 12);
+//        PageHelper.startPage(2, 12);
         List<Country> countryList2 = countryService.selectListByExample("selectByMap2",
+                country);
+        System.out.println("countryList2: "+countryList2);
+    }
+    
+    @Test
+    public void testBuildKeyValuesSelectByList() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+    {
+        
+        Country country=new Country();
+//        country.setCountryCode("AI");
+        country.setCountryName("Anguilla");
+        country.setId(33);
+        country.putSignMap("id", "<");
+        
+//        PageHelper.startPage(2, 12);
+        List<Country> countryList2 = countryService.selectListByExample("selectByList",
                 country);
         System.out.println("countryList2: "+countryList2);
     }
