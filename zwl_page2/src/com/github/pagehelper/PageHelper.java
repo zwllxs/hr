@@ -24,11 +24,13 @@
 
 package com.github.pagehelper;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -302,8 +304,11 @@ public class PageHelper implements Interceptor {
      * @param parameterObject 参数对象
      * @param page            分页信息
      * @return 返回带有分页信息的参数对象
+     * @throws NoSuchMethodException 
+     * @throws InvocationTargetException 
+     * @throws IllegalAccessException 
      */
-    private MapperMethod.ParamMap setPageParameter(Object parameterObject, BoundSql boundSql, Page page) {
+    private MapperMethod.ParamMap setPageParameter(Object parameterObject, BoundSql boundSql, Page page) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         MapperMethod.ParamMap<Object> paramMap = null;
         if (parameterObject == null) {
             paramMap = new MapperMethod.ParamMap<Object>();
@@ -321,7 +326,10 @@ public class PageHelper implements Interceptor {
                         }
                         else
                         {
-                            paramMap.put(parameterMapping.getProperty(), parameterObject);
+//                            paramMap.put(parameterMapping.getProperty(), parameterObject);
+                            Object value=PropertyUtils.getSimpleProperty(parameterObject, parameterMapping.getProperty());
+                            System.out.println("set param: 属性名: "+parameterMapping.getProperty()+" , value: "+value);
+                            paramMap.put(parameterMapping.getProperty(),value);
                         }
 //                        System.out.println("parameterObject: "+parameterObject.getClass());
 //                        paramMap.put(parameterMapping.getProperty(), 86);

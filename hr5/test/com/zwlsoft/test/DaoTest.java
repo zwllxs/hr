@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.github.pagehelper.PageHelper;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.service.CountryService;
 
@@ -127,7 +128,7 @@ public class DaoTest
         country.setId(33);
         country.putSignMap("id", "<");
         
-//        PageHelper.startPage(2, 12);
+        PageHelper.startPage(1, 12);
         List<Country> countryList2 = countryService.selectListByExample("selectByList",
                 country);
         System.out.println("countryList2: "+countryList2);
