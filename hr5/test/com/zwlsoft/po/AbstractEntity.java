@@ -1,13 +1,18 @@
 package com.zwlsoft.po;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zwlsoft.service.dao4.MyBatisType;
+import com.zwlsoft.service.dao.MyBatisType;
 import com.zwlsoft.utils.DaoUtil;
 
-
+/**
+ * 所有po父类
+ * @author zhangweilin
+ *
+ */
 public abstract class AbstractEntity implements Entity
 {
     
@@ -15,7 +20,21 @@ public abstract class AbstractEntity implements Entity
      * 
      */
     private static final long serialVersionUID = 1L;
+    /**
+     * 对应的操作符号 
+     */
     private Map<String, String> signMap=null;
+    /**
+     * 是否自动sql
+     */
+    private boolean isAutoSql;
+    
+    /**
+     * id集合，用来做in处理，一般为查询
+     */
+    private Serializable[] ids;
+//    private List<Integer> idList;
+    
     /**
      * 用来生成所有字段
      */
@@ -32,6 +51,7 @@ public abstract class AbstractEntity implements Entity
             signMap=new HashMap<String, String>();
         }
         signMap.put(DaoUtil.getColumnName(key), value);
+//        System.out.println("signMap: "+signMap);
     }
     public Map<String, String> getSignMap()
     {
@@ -47,6 +67,7 @@ public abstract class AbstractEntity implements Entity
     }
     public void setAllMybatisTypeList(List<MyBatisType> allMybatisTypeList)
     {
+        System.out.println("setAllMybatisTypeList: "+allMybatisTypeList);
         this.allMybatisTypeList = allMybatisTypeList;
     }
     public List<MyBatisType> getHasValueMybatisTypeList()
@@ -57,9 +78,49 @@ public abstract class AbstractEntity implements Entity
     {
         this.hasValueMybatisTypeList = hasValueMybatisTypeList;
     }
-     
- 
+    public boolean isAutoSql()
+    {
+        return isAutoSql;
+    }
     
+    public void setAutoSql(boolean isAutoSql)
+    {
+        this.isAutoSql = isAutoSql;
+    }
+//    public int[] getIds()
+//    {
+//        return ids;
+//    }
+//    public void setIds(int[] ids)
+//    {
+//        this.ids = ids;
+//    }
+//    public Integer[] getIds()
+//    {
+//        return ids;
+//    }
+//    public void setIds(Integer[] ids)
+//    {
+//        this.ids = ids;
+//    }
+//    public List<Integer> getIdList()
+//    {
+//        return idList;
+//    }
+//    public void setIdList(List<Integer> idList)
+//    {
+//        this.idList = idList;
+//    }
+//    public Integer[] getIds()
+//    {
+//        return ids;
+//    }
+//    public void setIds(Integer[] ids)
+//    {
+//        this.ids = ids;
+//    }  
+// 
+//    
 //    private Field[] fieldArr;
 //
 //    private Map<String, Object> keyValuesMap =null;
@@ -118,4 +179,12 @@ public abstract class AbstractEntity implements Entity
 //    {
 //        this.keyValuesMap = keyValuesMap;
 //    }
+    public Serializable[] getIds()
+    {
+        return ids;
+    }
+    public void setIds(Serializable[] ids)
+    {
+        this.ids = ids;
+    }
 }

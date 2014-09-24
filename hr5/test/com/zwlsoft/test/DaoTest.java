@@ -89,48 +89,48 @@ public class DaoTest
         
     }
     
-    @Test
-    public void testSelectDemo() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
-    {
-        Country country=new Country();
-        country.setCountryCode("AI");
-        country.setCountryName("Anguilla");
-        country.setId(6);
-//        country.buildKeyValues();
-        List<Country> countryList2 = countryService.selectListByExample("selectByDemo",
-                country);
-        System.out.println("countryList2: "+countryList2);
-    }
-    
-    @Test
-    public void testBuildKeyValues() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
-    {
-        
-        Country country=new Country();
+//    @Test
+//    public void testSelectDemo() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+//    {
+//        Country country=new Country();
 //        country.setCountryCode("AI");
-        country.setCountryName("Anguilla");
-        country.setId(33);
-        country.putSignMap("id", "<");
-        
-//        PageHelper.startPage(2, 12);
-        List<Country> countryList2 = countryService.selectListByExample("selectByMap2",
-                country);
-        System.out.println("countryList2: "+countryList2);
-    }
-    
-    @Test
-    public void testBuildKeyValuesSelectByList() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
-    {
-        
-        Country country=new Country();
-//        country.setCountryCode("AI");
-        country.setCountryName("Anguilla");
-        country.setId(33);
-        country.putSignMap("id", "<");
-        
-        PageHelper.startPage(1, 12);
-        List<Country> countryList2 = countryService.selectListByExample("selectByList",
-                country);
-        System.out.println("countryList2: "+countryList2);
-    }
+//        country.setCountryName("Anguilla");
+//        country.setId(6);
+////        country.buildKeyValues();
+//        List<Country> countryList2 = countryService.selectListByExample("selectByDemo",
+//                country);
+//        System.out.println("countryList2: "+countryList2);
+//    }
+//    
+//    @Test
+//    public void testBuildKeyValues() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+//    {
+//        
+//        Country country=new Country();
+////        country.setCountryCode("AI");
+//        country.setCountryName("Anguilla");
+//        country.setId(33);
+//        country.putSignMap("id", "<");
+//        
+////        PageHelper.startPage(2, 12);
+//        List<Country> countryList2 = countryService.selectListByExample("selectByMap2",
+//                country);
+//        System.out.println("countryList2: "+countryList2);
+//    }
+//    
+//    @Test
+//    public void testBuildKeyValuesSelectByList() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IntrospectionException
+//    {
+//        
+//        Country country=new Country();
+////        country.setCountryCode("AI");
+//        country.setCountryName("Anguilla");
+//        country.setId(33);
+//        country.putSignMap("id", "<");
+//        
+//        PageHelper.startPage(1, 12);
+//        List<Country> countryList2 = countryService.selectListByExample("selectByList",
+//                country);
+//        System.out.println("countryList2: "+countryList2);
+//    }
 }

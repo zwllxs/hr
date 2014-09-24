@@ -3,16 +3,17 @@ package com.zwlsoft.test;
 import java.beans.IntrospectionException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
-import com.zwlsoft.exception.UnsupportDataTypeException;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.po.PayPayment;
-import com.zwlsoft.service.dao4.BeanMapUtil;
+import com.zwlsoft.service.dao.exception.UnsupportDataTypeException;
 import com.zwlsoft.utils.DaoUtil;
 
 public class Test1
@@ -21,7 +22,7 @@ public class Test1
     @Test
     public void test()
     {
-        PayPayment payment = new PayPayment();
+//        PayPayment payment = new PayPayment();
         // System.out.println("payment: "+payment.getAllMethodList());
 
         // Country country=new Country();
@@ -31,7 +32,15 @@ public class Test1
         // System.out.println("name2: "+fieldArr[i].getName());
         // }
         // System.out.println("\ncountry: "+country.getAllMethodList());
-
+        String[] strArr=new String[] {"23","4dfds","fghfd"};
+        List<String> strList=new ArrayList<>();
+        strList.add("ssd");
+        strList.add("ssd212");
+        strList.add("ssdfff");
+        
+        System.out.println("strArr: "+strArr);
+        System.out.println("strArr: "+StringUtils.join(strArr,","));
+        System.out.println("strList: "+StringUtils.join(strList,","));
     }
 
     @Test
@@ -82,8 +91,8 @@ public class Test1
         country.setCountryCode("AI");
         country.setCountryName("Anguilla");
         country.setId(-2);
-        Map<String, Object> map=BeanMapUtil.bean2Map(country);
-        System.out.println("map: "+map);
+//        Map<String, Object> map=BeanMapUtil.bean2Map(country);
+//        System.out.println("map: "+map);
     }
     
     @Test

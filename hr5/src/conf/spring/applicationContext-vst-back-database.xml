@@ -41,13 +41,6 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 		<property name="mapperLocations"> 
 			<value>classpath*:com/zwlsoft/mapper/*.xml</value>
 		</property>
-		<!-- 
-		<property name="plugins">
-			<list>
-				<value>com.lvmama.vst.comm.mybatis.PaginationInterceptor</value>
-			</list>
-		</property>
-		 -->
 	</bean>
     
     <bean id="sqlSession"  class="org.mybatis.spring.SqlSessionTemplate">  

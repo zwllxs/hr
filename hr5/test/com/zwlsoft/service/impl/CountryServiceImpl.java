@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.zwlsoft.po.Country;
 import com.zwlsoft.service.CountryService;
-import com.zwlsoft.service.dao4.MyIbatisBaseDao;
+import com.zwlsoft.service.dao.MyIbatisBaseDao;
 
 @Repository(value="countryService")
 public class CountryServiceImpl extends MyIbatisBaseDao<Country> implements CountryService

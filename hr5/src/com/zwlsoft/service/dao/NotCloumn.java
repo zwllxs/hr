@@ -1,4 +1,4 @@
-package com.zwlsoft.service.dao4;
+package com.zwlsoft.service.dao;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

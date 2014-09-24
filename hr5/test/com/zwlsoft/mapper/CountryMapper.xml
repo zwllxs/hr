@@ -4,112 +4,262 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zwlsoft.po.Country">
-  <select id="selectAll" resultType="Country">
-    select * from country
-  </select>
+	<select id="selectAll" resultType="Country">
+		select * from country
+	</select>
 
-  <select id="selectGreterThanId" resultType="Country">
-    select * from country where id &gt;#{id}
-  </select>
+	<select id="selectGreterThanId" resultType="Country">
+		select * from country where id &gt;#{id}
+	</select>
 
-  <select id="selectByLike" resultType="Country" parameterType="Country" >
-    select * from country where country_name like '%#{country_name,jdbcType=VARCHAR}%'
-  </select>
+	<select id="selectByLike" resultType="Country" parameterType="Country">
+		select * from country where country_name like
+		'%#{country_name,jdbcType=VARCHAR}%'
+	</select>
 
-  <select id="selectGreterThanIdAndNotEquelContryname" resultType="Country">
-    select a.* from country a left join country b on a.id = b.id where a.id &gt;#{id} and b.country_name &lt;&gt; #{country_name} order by a.id
-  </select>
+	<select id="selectGreterThanIdAndNotEquelContryname" resultType="Country">
+		select a.* from country a left join country b on a.id = b.id where
+		a.id &gt;#{id} and b.country_name &lt;&gt; #{country_name} order by
+		a.id
+	</select>
 
-  <select id="selectAllOrderby" resultType="Country">
-      select * from country order by country_code desc
-  </select>
+	<select id="selectAllOrderby" resultType="Country">
+		select * from country order by country_code desc
+	</select>
 
-  <select id="selectAllOrderByParams" resultType="Country">
-    select * from country order by ${order1} desc,${order2} asc
-  </select>
+	<select id="selectAllOrderByParams" resultType="Country">
+		select * from country order by ${order1} desc,${order2} asc
+	</select>
 
-  <select id="selectByMap" resultType="Country" parameterType="java.util.Map">
-    select * from country  
-    <where>
-		<foreach collection="params.keys" item="k" index="index"
-			separator=" and ">
- 			<if test="null!=params[k]">  
-<!--   				${k}=${params[k]} 直接拼接的  -->
-<!-- 					${k} = #{k}    -->
-				${k} = #{params[${k}]}  
- 			</if>  
-		</foreach>   
-	</where>
-  </select>
-  
-  
+	<select id="selectByMap" resultType="Country" parameterType="java.util.Map">
+		select * from country
+		<where>
+			<foreach collection="params.keys" item="k" index="index"
+				separator=" and ">
+				<if test="null!=params[k]">
+					<!-- ${k}=${params[k]} 直接拼接的 -->
+					<!-- ${k} = #{k} -->
+					${k} = #{params[${k}]}
+				</if>
+			</foreach>
+		</where>
+	</select>
 
-<!--   <select id="selectByDemo" resultType="Country" parameterType="Country"> -->
-<!--     select * from country  where country_name = #{keyValuesMap} -->
-<!--   </select> -->
-  
 
-<!-- 直接自带keyValues -->
-  <select id="selectByMap2" resultType="Country" parameterType="java.util.Map">
-    select * from country  
-    <where>
-		<foreach collection="keyValuesMap.keys" item="k" index="index"
-			separator=" and ">
- 			<if test="null!=keyValuesMap[k]">  
-<!-- 				${k} = #{keyValuesMap[${k}][name]}   -->
-				${k}  ${@Ognl@getSignMap(signMap,k)}  ${@Ognl@getMybatisSqlValueType(keyValuesMap,k)}
- 			</if>  
-		</foreach>
-	</where>
-  </select>
 
-<!-- 直接自带keyValues -->
-<!--   <select id="selectByList" resultType="Country" parameterType="Country"> -->
-  <select id="selectByList" resultType="Country" parameterType="Country">
-    select  
-    	  <include refid="Select_Base_Column_List" />
-     from country  
-     	 <include refid="Where_condition_Column_List" />
-  </select>
-  
-  <!-- 以下为crud构建 -->
-  <!-- 查询字段 -->
-  <sql id="Select_Base_Column_List" >
-    <foreach collection="allMybatisTypeList" item="t" index="index"
-			separator=" , ">
-			${t.cloumn} ${t.property} 
-	</foreach>
-  </sql>
-  
-  <!-- where 条件 -->
-  <sql id="Where_condition_Column_List" >
-     <where>
-		<foreach collection="hasValueMybatisTypeList" item="t" index="index"
-			separator=" and ">
-				${t.cloumn} ${t.sign}  #{${t.property},jdbcType=${t.jdbcType}}
-		</foreach>
-	</where>
-  </sql>
-  
-  <!-- 字段列表 -->
-  <sql id="All_Column_List" >
-     <where>
-		<foreach collection="allMybatisTypeList" item="t" index="index"
-			separator=" , ">
-				${t.cloumn} 
-		</foreach>
-	</where>
-  </sql>
-  
-  <!-- 字段列表 -->
-  <sql id="All_Type_List" >
-     <where>
-		<foreach collection="allMybatisTypeList" item="t" index="index"
-			separator=" , ">
+	<!-- <select id="selectByDemo" resultType="Country" parameterType="Country"> -->
+	<!-- select * from country where country_name = #{keyValuesMap} -->
+	<!-- </select> -->
+
+
+	<!-- 直接自带keyValues -->
+	<select id="selectByMap2" resultType="Country" parameterType="java.util.Map">
+		select * from country
+		<where>
+			<foreach collection="keyValuesMap.keys" item="k" index="index"
+				separator=" and ">
+				<if test="null!=keyValuesMap[k]">
+					<!-- ${k} = #{keyValuesMap[${k}][name]} -->
+					${k} ${@Ognl@getSignMap(signMap,k)}
+					${@Ognl@getMybatisSqlValueType(keyValuesMap,k)}
+				</if>
+			</foreach>
+		</where>
+	</select>
+
+
+	<!-- 增加 -->
+	<insert id="insert2" parameterType="Country2">
+		insert into country_2 (
+		<include refid="All_Column_List" />
+		)
+		values (
+		<include refid="all_type_list" />
+		)
+	</insert>
+
+	<!-- 直接自带keyValues -->
+	<!-- <select id="selectByList" resultType="Country" parameterType="Country"> -->
+	<select id="selectByList" resultType="Country" parameterType="Country">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from country
+		<include refid="Where_Has_Value_Condition_Column_List" />
+	</select>
+
+	<!-- 以下为crud构建 -->
+	<!-- 查询字段 -->
+	<sql id="Select_All_Base_Column_List">
+		<if test="null!=allMybatisTypeList">
+			<foreach collection="allMybatisTypeList" item="t" index="index"
+				separator=" , ">
+				${t.cloumn} ${t.property}
+			</foreach>
+		</if>
+	</sql>
+
+	<!-- where 条件 (有值的) -->
+	<sql id="Where_Has_Value_Condition_Column_List">
+		<where>
+			<foreach collection="hasValueMybatisTypeList" item="t" index="index"
+				separator=" and ">
+				${t.cloumn} ${t.sign}
 				#{${t.property},jdbcType=${t.jdbcType}}
+			</foreach>
+		</where>
+	</sql>
+
+
+	<!-- where 条件 (包括有值的和没值的) -->
+	<sql id="Where_All_Condition_Column_List">
+		<where>
+			<foreach collection="allMybatisTypeList" item="t" index="index"
+				separator=" and ">
+				${t.cloumn} ${t.sign}
+				#{${t.property},jdbcType=${t.jdbcType}}
+			</foreach>
+		</where>
+	</sql>
+
+	<!-- update的字段 (有值的) -->
+	<sql id="Update_Has_Value_Column_List">
+		<foreach collection="hasValueMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn} ${t.sign} #{${t.property},jdbcType=${t.jdbcType}}
 		</foreach>
-	</where>
-  </sql>
-  
-  
+	</sql>
+
+	<!-- update的字段 (包括有值的无值的) -->
+	<sql id="Update_All_Column_List">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn} ${t.sign} #{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</sql>
+
+	<!-- 字段列表 -->
+	<sql id="All_Column_List">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn}
+		</foreach>
+	</sql>
+
+	<!-- 字段列表 -->
+	<sql id="all_type_list">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			#{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</sql>
+
+	<!-- where id等于 -->
+	<sql id="Where_Id_Is">
+		where id = #{id,jdbcType=INTEGER}
+	</sql>
+
+	<!-- where id in -->
+	<sql id="Where_Id_In">
+		where id in
+		<foreach item="item" collection="ids" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</sql>
+
+	<!-- where id in -->
+	<sql id="Where_Id_Array_In">
+		where id in
+		<foreach item="item" collection="array" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</sql>
+
+	<!-- 增加 -->
+	<insert id="insert" parameterType="Country">
+		insert into country (
+		<include refid="All_Column_List" />
+		)
+		values (
+		<include refid="all_type_list" />
+		)
+	</insert>
+
+	<!-- 批量增加 -->
+
+	<!-- 按id删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from country
+		<include refid="Where_Id_Is" />
+	</delete>
+
+	<!-- 按id批量删除 -->
+	<delete id="deleteByIds">
+		delete from country
+		<include refid="Where_Id_Array_In" />
+	</delete>
+
+	<!-- 按id改 ,只有当不为空的字段才更新,也就是设置过值的字段才会更新到库中 -->
+	<update id="updateSelectedColumnById" parameterType="country">
+		update country
+		<set>
+			<include refid="Update_Has_Value_Column_List" />
+		</set>
+		<include refid="Where_Id_Is" />
+	</update>
+
+	<!-- 按多个id改 ,只有当不为空的字段才更新,也就是设置过值的字段才会更新到库中 -->
+	<!-- <update id="updateBySelectedColumnIds" > -->
+	<!-- update country -->
+	<!-- <set > -->
+	<!-- <include refid="Where_Has_Value_Condition_Column_List" /> -->
+	<!-- </set> -->
+	<!-- <include refid="Where_Id_In" /> -->
+	<!-- </update> -->
+
+	<!-- 按id改 ,不管字段值是否为空，都全部更新 -->
+	<update id="updateAllColumnById" parameterType="country">
+		update country
+		<set>
+			<include refid="Update_All_Column_List" />
+		</set>
+		<include refid="Where_Id_Is" />
+	</update>
+
+	<!-- 按多个id改 ,不管字段值是否为空，都全部更新 -->
+	<!-- <update id="updateByAllColumnIds" > -->
+	<!-- update country -->
+	<!-- <set > -->
+	<!-- <include refid="Where_All_Condition_Column_List" /> -->
+	<!-- </set> -->
+	<!-- <include refid="Where_Id_In" /> -->
+	<!-- </update> -->
+
+	<!-- <select id="selectByList" resultType="Country" parameterType="Country"> -->
+	<!-- 按对象条件查列表 -->
+	<select id="selectListBySelected" resultType="Country"
+		parameterType="Country">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from country
+		<include refid="Where_Has_Value_Condition_Column_List" />
+	</select>
+
+	<!-- 按id查单个 -->
+	<select id="selectById" resultType="Country">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from country
+		<include refid="Where_Id_Is" />
+	</select>
+
+	<!-- 按多个id查 -->
+	<select id="selectByIds" resultType="Country">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from country
+		<include refid="Where_Id_In" />
+	</select>
+
 </mapper>

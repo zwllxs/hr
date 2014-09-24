@@ -11,7 +11,7 @@ import com.zwlsoft.service.dao.NotCloumn;
 /**
  * Description: Country Author: liuzh Update: liuzh(2014-06-06 13:38)
  */
-public class Country extends AbstractEntity
+public class Country2 extends AbstractEntity
 {
     /**
      * 
@@ -24,12 +24,19 @@ public class Country extends AbstractEntity
     private String countryName;
     private String countryCode;
     
+//    
+//    /**
+//     * 是否自动sql
+//     */
+//    private boolean isAutoSql2;
+    
+    
     @NotCloumn
     private Date date;//=new Date();
     private List<Role> roleList=new ArrayList<Role>();
     private Set<String> strSet=new HashSet<>();
 
-    public Country()
+    public Country2()
     {
         // System.out.println("能调吗？");
 //        setAllMethodList();
@@ -106,5 +113,4 @@ public class Country extends AbstractEntity
     {
         this.id = id;
     }
- 
 }

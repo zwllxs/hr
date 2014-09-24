@@ -1,4 +1,6 @@
-package com.zwlsoft.service.dao4;
+package com.zwlsoft.service.dao;
+
+import org.apache.commons.lang.StringUtils;
 
 public class MyBatisType
 {
@@ -13,12 +15,12 @@ public class MyBatisType
 
     public String getSign()
     {
-        return sign;
+        return StringUtils.isNotEmpty(sign)?sign:"=";
     }
 
     public void setSign(String sign)
     {
-        this.sign = sign;
+        this.sign = StringUtils.isNotEmpty(sign)?sign:"=";
     }
 
     public String getCloumn()

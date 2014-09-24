@@ -1,8 +1,9 @@
+package conf;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.zwlsoft.service.dao4.DaoConstant;
+import com.zwlsoft.service.dao.DaoConstant;
 
 public class Ognl
 {

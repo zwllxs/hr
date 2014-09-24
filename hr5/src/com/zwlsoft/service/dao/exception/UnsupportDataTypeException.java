@@ -1,4 +1,4 @@
-package com.zwlsoft.exception;
+package com.zwlsoft.service.dao.exception;
 
 /**
  *  

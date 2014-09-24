@@ -14,10 +14,10 @@ import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.zwlsoft.exception.UnsupportDataTypeException;
-import com.zwlsoft.service.dao4.DaoConstant;
-import com.zwlsoft.service.dao4.MyBatisType;
-import com.zwlsoft.service.dao4.NotCloumn;
+import com.zwlsoft.service.dao.DaoConstant;
+import com.zwlsoft.service.dao.MyBatisType;
+import com.zwlsoft.service.dao.NotCloumn;
+import com.zwlsoft.service.dao.exception.UnsupportDataTypeException;
 
 
 
@@ -180,12 +180,13 @@ public class DaoUtil
      * @throws NoSuchMethodException
      * @throws UnsupportDataTypeException 
      */
+    @SuppressWarnings("unchecked")
     public static void setMyBatisType(Object obj) throws IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, UnsupportDataTypeException
     {
         List<MyBatisType> HasValueMybatisTypeList=new ArrayList<>();//不包括非持久字段
         List<MyBatisType> allMybatisTypeList=new ArrayList<>();
         Map<String, String> signMap=(Map<String, String>) MethodUtils.invokeMethod(obj, "getSignMap", null);
-
+//        System.out.println("signMap2:"+signMap);
         Field[] fieldArr=getAllFieldList(obj);
         for (Field field : fieldArr)
         {
@@ -200,7 +201,7 @@ public class DaoUtil
 //            System.out.println("field.getType().getName(): "+field.getType().getName());
             String classType=field.getType().getSimpleName();
             
-            checkIsPrimitive(obj,field);  //禁止使用基础类型
+            checkIsPrimitive(obj,field);  //禁止使用基础类型,只检测当前类，不检测其父类
 
 //          System.out.println("类型 : "+o.getClass().getSimpleName());
             String jdbcType=javaJdbcTypeMap.get(classType);
@@ -209,13 +210,16 @@ public class DaoUtil
                 MyBatisType myBatisType=new MyBatisType();
                 myBatisType.setCloumn(getColumnName(field.getName()));
                 myBatisType.setProperty(field.getName());
-                
+                myBatisType.setJdbcType(jdbcType);
+                if (null!=signMap)
+                {
+//                    String sign = signMap.get(field.getName());
+                    String sign = signMap.get(getColumnName(field.getName()));
+                    myBatisType.setSign(StringUtils.isNotEmpty(sign) ? sign
+                            : "=");
+                }
                 if (null!=o)
                 {
-                    String sign=signMap.get(field.getName());
-                   
-                    myBatisType.setJdbcType(jdbcType);
-                    myBatisType.setSign(StringUtils.isNotEmpty(sign)?sign:"=");
 //                    System.out.println("myBatisType: "+myBatisType);
                     HasValueMybatisTypeList.add(myBatisType);
                 }
@@ -231,6 +235,9 @@ public class DaoUtil
         MethodUtils.invokeMethod(obj, "setHasValueMybatisTypeList", HasValueMybatisTypeList);
         //注入所有字段与属性的映射对
         MethodUtils.invokeMethod(obj, "setAllMybatisTypeList", allMybatisTypeList);
+        
+        System.out.println("HasValueMybatisTypeList: "+HasValueMybatisTypeList);
+        System.out.println("allMybatisTypeList: "+allMybatisTypeList);
     }
     
     private static Map<String, String> getTypeValuesMap(Field field,Object o) throws UnsupportDataTypeException
@@ -259,8 +266,16 @@ public class DaoUtil
         return "";
     }
 
+    /**
+     * 检测是否有基础类型，注意，它只检测当前类，并不检测父类，父类的属性类型请暂时自行检查
+     * @param obj
+     * @param field
+     * @throws UnsupportDataTypeException
+     */
     private static void checkIsPrimitive(Object obj, Field field) throws UnsupportDataTypeException 
     {
+//        System.out.println("name: "+field.getName());
+//        System.out.println("type: "+field.getType());
         if (field.getType().isPrimitive())
         {
             throw new UnsupportDataTypeException("不支持基础类型："+field.getType().getName()+",类名: "+obj.getClass()+", 属性名: "+field.getName());

@@ -1,4 +1,4 @@
-package com.zwlsoft.action;
+package com.zwlsoft.exception;
 
 public class BusinessException extends RuntimeException {
     /**

@@ -1,4 +1,4 @@
-package com.zwlsoft.service.dao4;
+package com.zwlsoft.service.dao;
 
 public class DaoConstant
 {
