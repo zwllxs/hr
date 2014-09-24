@@ -12,13 +12,13 @@ import java.util.List;
  * @since 3.2.2
  * 项目地址 : http://git.oschina.net/free/Mybatis_PageHelper
  */
-public class PageInfo<T> {
+public class PageInfo2<T> {
     //当前页
-    private int pageNo;
+    private int pageNum;
     //每页的数量
     private int pageSize;
     //当前页的数量
-    private int currentPageSize;
+    private int size;
     //由于startRow和endRow不常用，这里说个具体的用法
     //可以在页面中"显示startRow到endRow 共size条数据"
 
@@ -27,9 +27,9 @@ public class PageInfo<T> {
     //当前页面最后一个元素在数据库中的行号
     private int endRow;
     //总记录数
-    private long totalNum;
+    private long total;
     //总页数
-    private int pageNum;
+    private int pages;
     //结果集
     private List<T> list;
 
@@ -55,15 +55,11 @@ public class PageInfo<T> {
     //所有导航页号
     private int[] navigatepageNums;
 
-    public PageInfo()
-    {
-    }
-    
     /**
      * 包装Page对象
      * @param list
      */
-    public PageInfo(List<T> list) {
+    public PageInfo2(List<T> list) {
         this(list, 8);
     }
 
@@ -72,20 +68,20 @@ public class PageInfo<T> {
      * @param list page结果
      * @param navigatePages 页码数量
      */
-    public PageInfo(List<T> list, int navigatePages) {
+    public PageInfo2(List<T> list, int navigatePages) {
         if (list instanceof Page) {
             Page page = (Page) list;
-            this.pageNo = page.getPageNum();
+            this.pageNum = page.getPageNum();
             this.pageSize = page.getPageSize();
 
-            this.totalNum = page.getTotal();
-            this.pageNum = page.getPages();
+            this.total = page.getTotal();
+            this.pages = page.getPages();
             this.list = page;
-            this.currentPageSize = page.size();
+            this.size = page.size();
             //由于结果是>startRow的，所以实际的需要+1
             this.startRow = page.getStartRow() + 1;
             //计算实际的endRow（最后一页的时候特殊）
-            this.endRow = this.startRow - 1 + this.currentPageSize;
+            this.endRow = this.startRow - 1 + this.size;
             this.navigatePages = navigatePages;
             //计算导航页
             calcNavigatepageNums();
@@ -101,15 +97,15 @@ public class PageInfo<T> {
      */
     private void calcNavigatepageNums() {
         //当总页数小于或等于导航页码数时
-        if (pageNum <= navigatePages) {
-            navigatepageNums = new int[pageNum];
-            for (int i = 0; i < pageNum; i++) {
+        if (pages <= navigatePages) {
+            navigatepageNums = new int[pages];
+            for (int i = 0; i < pages; i++) {
                 navigatepageNums[i] = i + 1;
             }
         } else { //当总页数大于导航页码数时
             navigatepageNums = new int[navigatePages];
-            int startNum = pageNo - navigatePages / 2;
-            int endNum = pageNo + navigatePages / 2;
+            int startNum = pageNum - navigatePages / 2;
+            int endNum = pageNum + navigatePages / 2;
 
             if (startNum < 1) {
                 startNum = 1;
@@ -117,8 +113,8 @@ public class PageInfo<T> {
                 for (int i = 0; i < navigatePages; i++) {
                     navigatepageNums[i] = startNum++;
                 }
-            } else if (endNum > pageNum) {
-                endNum = pageNum;
+            } else if (endNum > pages) {
+                endNum = pages;
                 //最后navigatePages页
                 for (int i = navigatePages - 1; i >= 0; i--) {
                     navigatepageNums[i] = endNum--;
@@ -139,11 +135,11 @@ public class PageInfo<T> {
         if (navigatepageNums != null && navigatepageNums.length > 0) {
             firstPage = navigatepageNums[0];
             lastPage = navigatepageNums[navigatepageNums.length - 1];
-            if (pageNo > 1) {
-                prePage = pageNo - 1;
+            if (pageNum > 1) {
+                prePage = pageNum - 1;
             }
-            if (pageNo < pageNum) {
-                nextPage = pageNo + 1;
+            if (pageNum < pages) {
+                nextPage = pageNum + 1;
             }
         }
     }
@@ -152,19 +148,19 @@ public class PageInfo<T> {
      * 判定页面边界
      */
     private void judgePageBoudary() {
-        isFirstPage = pageNo == 1;
-        isLastPage = pageNo == pageNum && pageNo != 1;
-        hasPreviousPage = pageNo > 1;
-        hasNextPage = pageNo < pageNum;
+        isFirstPage = pageNum == 1;
+        isLastPage = pageNum == pages && pageNum != 1;
+        hasPreviousPage = pageNum > 1;
+        hasNextPage = pageNum < pages;
     }
 
-//    public void setPageNum(int pageNum) {
-//        this.pageNum = pageNum;
-//    }
-//
-//    public int getPageNum() {
-//        return pageNum;
-//    }
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
 
     public int getPageSize() {
         return pageSize;
@@ -178,13 +174,13 @@ public class PageInfo<T> {
         return endRow;
     }
 
-//    public long getTotal() {
-//        return total;
-//    }
+    public long getTotal() {
+        return total;
+    }
 
-//    public int getPages() {
-//        return pages;
-//    }
+    public int getPages() {
+        return pages;
+    }
 
     public List<T> getList() {
         return list;
@@ -233,13 +229,13 @@ public class PageInfo<T> {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("PageInfo{");
-        sb.append("pageNum=").append(pageNo);
+        sb.append("pageNum=").append(pageNum);
         sb.append(", pageSize=").append(pageSize);
-        sb.append(", size=").append(currentPageSize);
+        sb.append(", size=").append(size);
         sb.append(", startRow=").append(startRow);
         sb.append(", endRow=").append(endRow);
-        sb.append(", total=").append(totalNum);
-        sb.append(", pages=").append(pageNum);
+        sb.append(", total=").append(total);
+        sb.append(", pages=").append(pages);
         sb.append(", list=").append(list);
         sb.append(", firstPage=").append(firstPage);
         sb.append(", prePage=").append(prePage);
@@ -260,25 +256,5 @@ public class PageInfo<T> {
         }
         sb.append('}');
         return sb.toString();
-    }
-
-    public long getTotalNum()
-    {
-        return totalNum;
-    }
-
-    public int getPageNo()
-    {
-        return pageNo;
-    }
-
-    public void setPageNo(int pageNo)
-    {
-        this.pageNo = pageNo;
-    }
-
-    public int getPageNum()
-    {
-        return pageNum;
     }
 }

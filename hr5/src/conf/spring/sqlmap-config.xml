@@ -5,9 +5,9 @@
 
 <configuration>
 
-	<settings>
-		<setting name="logImpl" value="log4j" />
-	</settings>
+<!-- 	<settings> -->
+<!-- 		<setting name="logImpl" value="log4j" /> -->
+<!-- 	</settings> -->
 
 	<typeAliases>
 		<package name="com.zwlsoft.po" />
