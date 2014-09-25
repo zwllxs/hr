@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zwlsoft.po.Country;
+import com.zwlsoft.po.Person;
 
 @Controller
 @RequestMapping("/")
@@ -34,6 +35,19 @@ public class IndexAction
 //        return "list";
 //    }
     
+    
+    @RequestMapping(value = "/form1/save22.do")
+    public String save22(Person person)
+    {
+        System.out.println("person_SAVE22: " + person);
+        return "ok";
+    }
+    
+    /**
+     * 这种方式，PageInfo接不到值
+     * @param pageInfo
+     * @return
+     */
     @RequestMapping("/list.do") 
     public ModelAndView listCountry(PageInfo pageInfo){
         
