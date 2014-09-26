@@ -5,6 +5,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.mapper.CountryMapper;
 import com.github.pagehelper.model.Country;
 import com.github.pagehelper.util.MybatisHelper;
+
+import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -20,6 +22,8 @@ public class PageHelperTest {
      */
     @Test
     public void shouldGetAllCountries() {
+//        MapperMethod.
+        
         SqlSession sqlSession = MybatisHelper.getSqlSession();
         try {
             List<Country> list = sqlSession.selectList("selectAll");

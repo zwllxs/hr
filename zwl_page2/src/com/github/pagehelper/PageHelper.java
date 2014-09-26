@@ -153,11 +153,11 @@ public class PageHelper implements Interceptor {
     /**
      * 开始分页
      *
-     * @param pageNum  页码
+     * @param pageNo  页码
      * @param pageSize 每页显示数量
      */
-    public static void startPage(int pageNum, int pageSize) {
-        startPage(pageNum, pageSize, true);
+    public static void startPage(int pageNo, int pageSize) {
+        startPage(pageNo, pageSize, true);
     }
 
     /**

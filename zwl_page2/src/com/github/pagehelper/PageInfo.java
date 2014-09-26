@@ -1,5 +1,6 @@
 package com.github.pagehelper;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -230,38 +231,7 @@ public class PageInfo<T> {
         return navigatepageNums;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("PageInfo{");
-        sb.append("pageNum=").append(pageNo);
-        sb.append(", pageSize=").append(pageSize);
-        sb.append(", size=").append(currentPageSize);
-        sb.append(", startRow=").append(startRow);
-        sb.append(", endRow=").append(endRow);
-        sb.append(", total=").append(totalNum);
-        sb.append(", pages=").append(pageNum);
-        sb.append(", list=").append(list);
-        sb.append(", firstPage=").append(firstPage);
-        sb.append(", prePage=").append(prePage);
-        sb.append(", nextPage=").append(nextPage);
-        sb.append(", lastPage=").append(lastPage);
-        sb.append(", isFirstPage=").append(isFirstPage);
-        sb.append(", isLastPage=").append(isLastPage);
-        sb.append(", hasPreviousPage=").append(hasPreviousPage);
-        sb.append(", hasNextPage=").append(hasNextPage);
-        sb.append(", navigatePages=").append(navigatePages);
-        sb.append(", navigatepageNums=");
-        if (navigatepageNums == null) sb.append("null");
-        else {
-            sb.append('[');
-            for (int i = 0; i < navigatepageNums.length; ++i)
-                sb.append(i == 0 ? "" : ", ").append(navigatepageNums[i]);
-            sb.append(']');
-        }
-        sb.append('}');
-        return sb.toString();
-    }
-
+   
     public long getTotalNum()
     {
         return totalNum;
@@ -280,5 +250,25 @@ public class PageInfo<T> {
     public int getPageNum()
     {
         return pageNum;
+    }
+
+    public void setPageSize(int pageSize)
+    {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "PageInfo [pageNo=" + pageNo + ", pageSize=" + pageSize
+                + ", currentPageSize=" + currentPageSize + ", startRow="
+                + startRow + ", endRow=" + endRow + ", totalNum=" + totalNum
+                + ", pageNum=" + pageNum + ", list=" + list + ", firstPage="
+                + firstPage + ", prePage=" + prePage + ", nextPage=" + nextPage
+                + ", lastPage=" + lastPage + ", isFirstPage=" + isFirstPage
+                + ", isLastPage=" + isLastPage + ", hasPreviousPage="
+                + hasPreviousPage + ", hasNextPage=" + hasNextPage
+                + ", navigatePages=" + navigatePages + ", navigatepageNums="
+                + Arrays.toString(navigatepageNums) + "]";
     }
 }

@@ -3,6 +3,8 @@ package com.zwlsoft.service.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
+
 /**
  * 基于Mybatis的基础DAO接口
  * 
@@ -149,5 +151,12 @@ public interface IBaseGenericDAO<T> {
      * @return
      */
     List<T> selectListBySelected(T t);
+    
+    /**
+     * 按指定对象模型查询列表
+     * @param t
+     * @return
+     */
+    List<T> selectListBySelected(T t,PageInfo<T> pageInfo);
 
 }

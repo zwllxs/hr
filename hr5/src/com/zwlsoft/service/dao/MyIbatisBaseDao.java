@@ -10,6 +10,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zwlsoft.po.AbstractEntity;
 import com.zwlsoft.service.dao.exception.DAOException;
 import com.zwlsoft.service.dao.exception.UnsupportDataTypeException;
@@ -628,5 +630,13 @@ public class MyIbatisBaseDao<T> extends SqlSessionTemplateDaoSupport implements
             e.printStackTrace();
             throw new DAOException("查询失败:sqlId: " + sqlId, e);
         }
+    }
+
+    @Override
+    public List<T> selectListBySelected(T t, PageInfo<T> pageInfo)
+    {
+        PageHelper.startPage(pageInfo.getPageNo(), pageInfo.getPageSize());
+//        PageHelper.startPage(1, 3);
+        return selectListBySelected(t);
     }
 }
