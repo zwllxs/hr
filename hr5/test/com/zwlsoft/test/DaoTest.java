@@ -1,7 +1,5 @@
 package com.zwlsoft.test;
 
-import java.beans.IntrospectionException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +9,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.github.pagehelper.PageHelper;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.service.CountryService;
 

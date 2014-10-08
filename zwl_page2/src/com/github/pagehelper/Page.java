@@ -47,30 +47,49 @@ public class Page<E> extends ArrayList<E> {
      */
     private static final int SQL_COUNT = 0;
 
-    private int pageNum;
+    /**
+     * 当前 分页 页码
+     */
+    private int pageNo;
+    /**
+     * 当前每页数量
+     */
     private int pageSize;
+    /**
+     * 起始行
+     */
     private int startRow;
+    /**
+     *  结束行
+     */
     private int endRow;
-    private long total;
-    private int pages;
+    
+    /**
+     * 总记录数量
+     */
+    private long totalNum;
+    /**
+     * 总页数
+     */
+    private int pageNum;
 
-    public Page(int pageNum, int pageSize) {
-        this(pageNum, pageSize, SQL_COUNT);
+    public Page(int pageNo, int pageSize) {
+        this(pageNo, pageSize, SQL_COUNT);
     }
 
-    public Page(int pageNum, int pageSize, boolean count) {
-        this(pageNum, pageSize, count ? Page.SQL_COUNT : Page.NO_SQL_COUNT);
+    public Page(int pageNo, int pageSize, boolean count) {
+        this(pageNo, pageSize, count ? Page.SQL_COUNT : Page.NO_SQL_COUNT);
     }
 
-    public Page(int pageNum, int pageSize, int total) {
+    public Page(int pageNo, int pageSize, int totalNum) {
         super(pageSize > -1 ? pageSize : 0);
         //分页合理化，针对不合理的页码自动处理
-        if (pageNum <= 0) {
-            pageNum = 1;
+        if (pageNo <= 0) {
+            pageNo = 1;
         }
-        this.pageNum = pageNum;
+        this.pageNo = pageNo;
         this.pageSize = pageSize;
-        this.total = total;
+        this.totalNum = totalNum;
         calculateStartAndEndRow();
     }
 
@@ -79,12 +98,12 @@ public class Page<E> extends ArrayList<E> {
     }
 
 
-    public Page(RowBounds rowBounds, int total) {
+    public Page(RowBounds rowBounds, int totalNum) {
         super(rowBounds.getLimit() > -1 ? rowBounds.getLimit() : 0);
         this.pageSize = rowBounds.getLimit();
         this.startRow = rowBounds.getOffset();
         //RowBounds方式默认不求count总数，如果想求count,可以修改这里为SQL_COUNT
-        this.total = total;
+        this.totalNum = totalNum;
         this.endRow = this.startRow + this.pageSize;
     }
 
@@ -92,21 +111,21 @@ public class Page<E> extends ArrayList<E> {
         return this;
     }
 
-    public int getPages() {
-        return pages;
+    public int getPageNum() {
+        return pageNum;
     }
 
     public int getEndRow() {
         return endRow;
     }
 
-    public int getPageNum() {
-        return pageNum;
+    public int getPageNo() {
+        return pageNo;
     }
 
-    public void setPageNum(int pageNum) {
+    public void setPageNo(int pageNo) {
         //分页合理化，针对不合理的页码自动处理
-        this.pageNum = pageNum <= 0 ? 1 : pageNum;
+        this.pageNo = pageNo <= 0 ? 1 : pageNo;
     }
 
     public int getPageSize() {
@@ -121,20 +140,20 @@ public class Page<E> extends ArrayList<E> {
         return startRow;
     }
 
-    public long getTotal() {
-        return total;
+    public long getTotalNum() {
+        return totalNum;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setTotalNum(long totalNum) {
+        this.totalNum = totalNum;
         if (pageSize > 0) {
-            pages = (int) (total / pageSize + ((total % pageSize == 0) ? 0 : 1));
+            pageNum = (int) (totalNum / pageSize + ((totalNum % pageSize == 0) ? 0 : 1));
         } else {
-            pages = 0;
+            pageNum = 0;
         }
         //分页合理化，针对不合理的页码自动处理
-        if (pageNum > pages) {
-            pageNum = pages;
+        if (pageNo > pageNum) {
+            pageNo = pageNum;
             calculateStartAndEndRow();
         }
     }
@@ -143,23 +162,20 @@ public class Page<E> extends ArrayList<E> {
      * 计算起止行号
      */
     private void calculateStartAndEndRow() {
-        this.startRow = this.pageNum > 0 ? (this.pageNum - 1) * this.pageSize : 0;
+        this.startRow = this.pageNo > 0 ? (this.pageNo - 1) * this.pageSize : 0;
         this.endRow = this.startRow + this.pageSize;
     }
 
     public boolean isCount() {
-        return this.total > NO_SQL_COUNT;
+        return this.totalNum > NO_SQL_COUNT;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Page{" +
-//                "pageNum=" + pageNum +
-//                ", pageSize=" + pageSize +
-//                ", startRow=" + startRow +
-//                ", endRow=" + endRow +
-//                ", total=" + total +
-//                ", pages=" + pages +
-//                '}';
-//    }
+    @Override
+    public String toString()
+    {
+        return "Page [pageNo=" + pageNo + ", pageSize=" + pageSize
+                + ", startRow=" + startRow + ", endRow=" + endRow
+                + ", totalNum=" + totalNum + ", pageNum=" + pageNum + "]";
+    }
+
 }

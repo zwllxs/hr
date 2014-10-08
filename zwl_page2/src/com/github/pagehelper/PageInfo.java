@@ -79,8 +79,8 @@ public class PageInfo<T> {
             this.pageNo = page.getPageNum();
             this.pageSize = page.getPageSize();
 
-            this.totalNum = page.getTotal();
-            this.pageNum = page.getPages();
+            this.totalNum = page.getTotalNum();
+            this.pageNum = page.getPageNum();
             this.list = page;
             this.currentPageSize = page.size();
             //由于结果是>startRow的，所以实际的需要+1

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwlsoft.po.User">
+	<!-- 查询字段 -->
+	<sql id="Select_All_Base_Column_List">
+		<if test="null!=allMybatisTypeList">
+			<foreach collection="allMybatisTypeList" item="t" index="index"
+				separator=" , ">
+				${t.cloumn} ${t.property}
+			</foreach>
+		</if>
+	</sql>
+
+	<!-- where 条件 (有值的) -->
+	<sql id="Where_Has_Value_Condition_Column_List">
+		<where>
+			<foreach collection="hasValueMybatisTypeList" item="t" index="index"
+				separator=" and ">
+				${t.cloumn} ${t.sign}
+				#{${t.property},jdbcType=${t.jdbcType}}
+			</foreach>
+		</where>
+	</sql>
+
+
+	<!-- where 条件 (包括有值的和没值的) -->
+	<sql id="Where_All_Condition_Column_List">
+		<where>
+			<foreach collection="allMybatisTypeList" item="t" index="index"
+				separator=" and ">
+				${t.cloumn} ${t.sign}
+				#{${t.property},jdbcType=${t.jdbcType}}
+			</foreach>
+		</where>
+	</sql>
+
+	<!-- update的字段 (有值的) -->
+	<sql id="Update_Has_Value_Column_List">
+		<foreach collection="hasValueMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn} ${t.sign} #{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</sql>
+
+	<!-- update的字段 (包括有值的无值的) -->
+	<sql id="Update_All_Column_List">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn} ${t.sign} #{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</sql>
+
+	<!-- 字段列表 -->
+	<sql id="All_Column_List">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			${t.cloumn}
+		</foreach>
+	</sql>
+
+	<!-- 字段列表 -->
+	<sql id="all_type_list">
+		<foreach collection="allMybatisTypeList" item="t" index="index"
+			separator=" , ">
+			#{${t.property},jdbcType=${t.jdbcType}}
+		</foreach>
+	</sql>
+
+	<!-- where id等于 -->
+	<sql id="Where_Id_Is">
+		where id = #{id,jdbcType=INTEGER}
+	</sql>
+
+	<!-- where id in -->
+	<sql id="Where_Id_In">
+		where id in
+		<foreach item="item" collection="ids" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</sql>
+
+	<!-- where id in -->
+	<sql id="Where_Id_Array_In">
+		where id in
+		<foreach item="item" collection="array" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</sql>
+
+	<!-- 增加 -->
+	<insert id="insert" parameterType="User">
+		insert into user (
+		<include refid="All_Column_List" />
+		)
+		values (
+		<include refid="all_type_list" />
+		)
+	</insert>
+
+	<!-- 批量增加 -->
+
+	<!-- 按id删除 -->
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from user
+		<include refid="Where_Id_Is" />
+	</delete>
+
+	<!-- 按id批量删除 -->
+	<delete id="deleteByIds">
+		delete from user
+		<include refid="Where_Id_Array_In" />
+	</delete>
+
+	<!-- 按id改 ,只有当不为空的字段才更新,也就是设置过值的字段才会更新到库中 -->
+	<update id="updateSelectedColumnById" parameterType="User">
+		update user
+		<set>
+			<include refid="Update_Has_Value_Column_List" />
+		</set>
+		<include refid="Where_Id_Is" />
+	</update>
+
+	<!-- 按多个id改 ,只有当不为空的字段才更新,也就是设置过值的字段才会更新到库中 -->
+	<!-- <update id="updateBySelectedColumnIds" > -->
+	<!-- update user -->
+	<!-- <set > -->
+	<!-- <include refid="Where_Has_Value_Condition_Column_List" /> -->
+	<!-- </set> -->
+	<!-- <include refid="Where_Id_In" /> -->
+	<!-- </update> -->
+
+	<!-- 按id改 ,不管字段值是否为空，都全部更新 -->
+	<update id="updateAllColumnById" parameterType="User">
+		update user
+		<set>
+			<include refid="Update_All_Column_List" />
+		</set>
+		<include refid="Where_Id_Is" />
+	</update>
+
+	<!-- 按多个id改 ,不管字段值是否为空，都全部更新 -->
+	<!-- <update id="updateByAllColumnIds" > -->
+	<!-- update user -->
+	<!-- <set > -->
+	<!-- <include refid="Where_All_Condition_Column_List" /> -->
+	<!-- </set> -->
+	<!-- <include refid="Where_Id_In" /> -->
+	<!-- </update> -->
+
+	<!-- <select id="selectByList" resultType="User" parameterType="User"> -->
+	<!-- 按对象条件查列表 -->
+	<select id="selectListBySelected" resultType="User"
+		parameterType="User">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from user
+		<include refid="Where_Has_Value_Condition_Column_List" />
+	</select>
+
+	<!-- 按id查单个 -->
+	<select id="selectById" resultType="User">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from user
+		<include refid="Where_Id_Is" />
+	</select>
+
+	<!-- 按多个id查 -->
+	<select id="selectByIds" resultType="User">
+		select
+		<include refid="Select_All_Base_Column_List" />
+		from user
+		<include refid="Where_Id_In" />
+	</select>
+
+</mapper>

@@ -25,7 +25,7 @@ import org.springframework.ui.Model;
 /**
  * ACTION基类,提供一些Web层常用的公共的方法
  * 
- * @author wenzhengtao
+ * @author zhangweilin
  * 
  */
 public class BaseActionSupport extends BaseCommonAction{

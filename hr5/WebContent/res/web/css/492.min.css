@@ -1,0 +1,479 @@
+@charset "utf-8"; 
+
+body {
+	font-family: "微软雅黑", "宋体";
+	font-size: 12px;
+	color: #666
+}
+
+a {
+	font-family: "微软雅黑", "宋体"
+}
+
+.webHeaderTable {
+	background: #0b5899;
+	position: relative;
+	margin: 0 auto
+}
+
+.webHeader {
+	height: 100px
+}
+
+.webBanner {
+	width: 100% !important
+}
+
+.banner {
+	width: 100%;
+	height: 380px;
+	background: url(../../../res/web/images/back.jpg) #0063a2
+		50% 0 no-repeat
+}
+
+.webFooterTable {
+	background: #353535
+}
+
+.corpTitle {
+	top: 50px;
+	color: #fff;
+	font-family: "微软雅黑", "宋体"
+}
+
+.localer {
+	color: #f1f1f1
+}
+
+.localer a {
+	color: #f1f1f1
+}
+
+.nav {
+	width: 660px;
+	position: relative;
+	height: 34px;
+	line-height: 34px;
+	top: 50px;
+	left: 35px;
+	font-size: 15px
+}
+
+.nav .navMainContent {
+	width: 660px;
+	height: 34px
+}
+
+.nav .navLeft {
+	background: no-repeat right
+}
+
+.nav .navRight {
+	background: no-repeat left
+}
+
+.nav .itemSep {
+	display: table-cell;
+	width: 20px;
+	height: 32px;
+	background: url(/image/template/492/g_ls.gif?v=201312101747) center
+		no-repeat
+}
+
+.nav .item .itemCenter {
+	vertical-align: middle
+}
+
+.nav .item .itemCenter a {
+	color: #e2eef9;
+	font-weight: bold
+}
+
+.nav .itemHover .itemCenter a {
+	color: #fff;
+	font-weight: bold
+}
+
+.nav .itemSelected .itemCenter a {
+	color: #fff;
+	font-weight: bold
+}
+
+.navSubMenu .content {
+	border: #187ccd solid 1px;
+	border-top: #187ccd solid 1px;
+	background: #0f65ab
+}
+
+.navSubMenu .item {
+	line-height: 30px
+}
+
+.navSubMenu .item a {
+	color: #fff
+}
+
+.navSubMenu .itemHover {
+	background: #179ff5
+}
+
+.navSubMenu .itemHover a {
+	color: #fff
+}
+
+.subMenu .content {
+	background: #0f65ab;
+	border: #187ccd solid 1px;
+	border-top: #187ccd solid 1px
+}
+
+.footer {
+	color: #888;
+	padding-top: 18px
+}
+
+.footer a {
+	color: #888
+}
+
+.footer a:hover {
+	color: #5d767d
+}
+
+.forms .formBannerMore a {
+	color: #fafafa
+}
+
+.forms .formMiddle .g_border {
+	border-color: #87adb6
+}
+
+.forms .formMiddle .g_borderHover {
+	border-color: #0077ba
+}
+
+.forms .formMiddle .g_borderSelected {
+	border-color: #0d439d
+}
+
+.forms .formMiddle .g_separator {
+	border-color: #999
+}
+
+.forms .formMiddle .g_selected {
+	background: #0070c6;
+	color: #fff
+}
+
+.forms .formMiddle .g_selected a {
+	color: #fff
+}
+
+.forms .formMiddle .g_title {
+	background: #ccc
+}
+
+.forms .formMiddle .g_block {
+	background: #0070c6
+}
+
+.forms .formMiddle .g_hover {
+	background: #ddd;
+	color: #000
+}
+
+.forms .formMiddle .g_hover a {
+	color: #000
+}
+
+.forms .formMiddle .g_tip {
+	background: #fff799;
+	border: 1px solid #ffda99
+}
+
+.forms .formMiddle .g_panel {
+	background: #f3f5f7;
+	color: #333
+}
+
+.forms .formMiddle .g_panel a {
+	color: #333
+}
+
+.forms .formMiddle .g_panelArrow {
+	color: #f3f5f7
+}
+
+.forms .g_close {
+	background: url(/image/imgClose.gif?v=201205141045) -0px 10px no-repeat;
+	height: 30px
+}
+
+.forms .g_close:hover {
+	background: url(/image/imgClose.gif?v=201205141045) -37px 10px no-repeat;
+	height: 30px
+}
+
+.forms .formMiddle .g_imgPrev {
+	background: url(/image/template/488/chuangyi02.png) no-repeat
+}
+
+.forms .formMiddle .g_imgNext {
+	background: url(/image/template/488/chuangyi01.png) no-repeat
+}
+
+.forms .formMiddle .g_mallBuy {
+	background: url(/image/buyB3.png?v=201310281734) no-repeat 0 -64px
+}
+
+.forms .formMiddle .g_mallBuy span {
+	background: url(/image/buyB3.png?v=201310281734) 0 -94px repeat-x
+}
+
+.forms .formMiddle .g_mallBuyBig {
+	background: url(/image/buyB2.png?v=201310281734) no-repeat 0 -97px
+}
+
+.forms .formMiddle .g_mallBuyBig span {
+	background: url(/image/buyB2.png?v=201310281734) 0 -145px repeat-x
+}
+
+.forms .formMiddle .g_stress {
+	color: #0070c6
+}
+
+.forms .formMiddle .g_stress a {
+	color: #0070c6
+}
+
+.subNav {
+	word-wrap: break-word;
+	word-break: normal
+}
+
+.subNav .subNavItem {
+	line-height: 30px
+}
+
+.subNav .subNavItemCenter a {
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+.sideForms .formBanner {
+	background: #0077ba;
+	height: 40px;
+	line-height: 40px
+}
+
+.sideForms .formBanner .left {
+	display: table-cell;
+	*display: block;
+	width: 10px
+}
+
+.sideForms .formBanner .right {
+	display: table-cell;
+	*display: block;
+	width: 10px
+}
+
+.sideForms .formBannerTitle .titleText {
+	color: #FFF;
+	font-size: 15px
+}
+
+.sideForms .formBannerMore a {
+	color: #666;
+	display: block;
+	width: 46px;
+	height: 36px;
+	background: url(/image/template/492/more.gif?v=201312101747) no-repeat;
+	padding: 0;
+	margin-top: 14px
+}
+
+.sideForms .formBannerMore a span {
+	display: none
+}
+
+.sideForms .formMiddle {
+	background: #fff;
+	border: #eee solid 1px;
+	border-top: 0
+}
+
+.mainForms .formBanner {
+	overflow: scroll;
+	height: 39px;
+	line-height: 39px;
+	border-bottom: 1px solid #bbb
+}
+
+.mainForms .formBanner .left {
+	display: table-cell;
+	*display: block;
+	width: 2px
+}
+
+.mainForms .formBanner .center {
+	color: #333
+}
+
+.mainForms .formBanner .right {
+	display: table-cell;
+	*display: block;
+	width: 5px
+}
+
+.mainForms .formBannerTitle .titleText {
+	font-size: 15px
+}
+
+.mainForms .formBannerOther {
+	right: 10px;
+	top: 13px
+}
+
+.mainForms .formBannerMore a {
+	color: #666;
+	display: block;
+	width: 46px;
+	height: 16px;
+	background: url(/image/template/492/more2.gif?v=201312101747) no-repeat;
+	padding: 0
+}
+
+.mainForms .formBannerMore a span {
+	display: none
+}
+
+.mainForms .formMiddle {
+	border-top: 1px solid #fff;
+	padding-top: 5px
+}
+
+.absForms .formBannerMore a {
+	padding-right: 13px
+}
+
+.g_sB_rt {
+	background: url(/image/site/float/floata_Blue1.png) no-repeat 0 0
+}
+
+.g_sB_rc {
+	background: url(/image/site/float/floata_Blue1.png) repeat-y -60px 0;
+	color: #FFF
+}
+
+.g_sB_rb {
+	background: url(/image/site/float/floata_Blue1.png) no-repeat -120px 0
+}
+
+.g_sB_lt {
+	background: url(/image/site/float/floata_Blue1.png) no-repeat -180px 0
+}
+
+.g_sB_lc {
+	background: url(/image/site/float/floata_Blue1.png) repeat-y -240px 0;
+	color: #FFF
+}
+
+.g_sB_lb {
+	background: url(/image/site/float/floata_Blue1.png) no-repeat -300px 0
+}
+
+.siteBackToTop_small_box {
+	background-position: 0 -120px
+}
+
+.visitorCounterBg {
+	background: url("/image/site/visitorCounter/blue4.gif") no-repeat scroll
+		0 0 transparent
+}
+
+.formTabButton .formTabMiddleHover {
+	color: #43636a;
+	font-weight: bold
+}
+
+.formTabContent {
+	background: #FFF
+}
+
+.productFilterVert .productFilterValue a {
+	line-height: 30px;
+	word-wrap: break-word;
+	word-break: normal
+}
+
+.productFilterVert .productFilterValueCenter {
+	white-space: normal;
+	*word-break: break-all
+}
+
+.g_vertFold .g_foldValue a {
+	line-height: 30px;
+	word-wrap: break-word;
+	word-break: normal
+}
+
+.g_vertFold .g_foldValueCenter {
+	white-space: normal;
+	*word-break: break-all
+}
+
+.formStyle66 .formMiddle {
+	color: #f1f1f1
+}
+
+.formStyle65 .formMiddle a {
+	color: #f1f1f1;
+	text-decoration: none
+}
+
+.formStyle65 .formMiddle {
+	color: #f1f1f1
+}
+
+.webHeaderTd {
+	margin: 0 auto
+}
+
+.corpTitle2 {
+	left: 126px;
+	top: 18px
+}
+
+.logo2 {
+	left: 30px;
+	top: 35px
+}
+
+.nav2 {
+	left: auto;
+	right: 0;
+	width: 660px;
+	position: absolute
+}
+
+.nav2 .navContent {
+	float: none;
+	width: 100%
+}
+
+.nav2 .navCenter {
+	float: right
+}
+
+.rightForms .formBannerOther a,.sideForms .formBannerOther a {
+	color: #FFF
+}
+
+.productTileForm {
+	padding: 0
+}
+
+.photoForm {
+	padding: 0
+}

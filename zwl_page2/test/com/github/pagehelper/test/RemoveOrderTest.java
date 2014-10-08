@@ -28,7 +28,7 @@ public class RemoveOrderTest {
             PageHelper.startPage(1, 50);
             List<Country> list = countryMapper.selectAllOrderby();
             //总数183
-            Assert.assertEquals(183, ((Page)list).getTotal());
+            Assert.assertEquals(183, ((Page)list).getTotalNum());
         } finally {
             sqlSession.close();
         }
@@ -44,7 +44,7 @@ public class RemoveOrderTest {
             PageHelper.startPage(1, 50);
             List<Country> list = countryMapper.selectAllOrderByParams("countryname", "countrycode");
             //总数183
-            Assert.assertEquals(183, ((Page)list).getTotal());
+            Assert.assertEquals(183, ((Page)list).getTotalNum());
         } finally {
             sqlSession.close();
         }

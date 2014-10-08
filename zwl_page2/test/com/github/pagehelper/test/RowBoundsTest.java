@@ -32,7 +32,7 @@ public class RowBoundsTest {
             //新增PageInfo对象，对返回结果进行封装
             PageInfo page = new PageInfo(list);
             assertEquals(10, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(1, list.get(0).getId());
             assertEquals(10, list.get(list.size() - 1).getId());
@@ -41,7 +41,7 @@ public class RowBoundsTest {
             //获取第10页，10条内容，显式查询总数count
             list = countryMapper.selectAll(new RowBounds(10, 10));
             assertEquals(10, list.size());
-            assertEquals(183, ((Page) list).getTotal());
+            assertEquals(183, ((Page) list).getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(91, list.get(0).getId());
             assertEquals(100, list.get(list.size() - 1).getId());
@@ -50,7 +50,7 @@ public class RowBoundsTest {
             //获取第3页，20条内容，默认查询总数count
             list = countryMapper.selectAll(new RowBounds(6, 20));
             assertEquals(20, list.size());
-            assertEquals(183, ((Page) list).getTotal());
+            assertEquals(183, ((Page) list).getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(101, list.get(0).getId());
             assertEquals(120, list.get(list.size() - 1).getId());
@@ -73,7 +73,7 @@ public class RowBoundsTest {
             //获取从0开始，10条内容
             List<Country> list = sqlSession.selectList("selectAll", null, new RowBounds(1, 10));
             assertEquals(10, list.size());
-            assertEquals(183, ((Page) list).getTotal());
+            assertEquals(183, ((Page) list).getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(1, list.get(0).getId());
             assertEquals(10, list.get(list.size() - 1).getId());
@@ -82,7 +82,7 @@ public class RowBoundsTest {
             //获取从10开始，10条内容
             list = sqlSession.selectList("selectAll", null, new RowBounds(10, 10));
             assertEquals(10, list.size());
-            assertEquals(183, ((Page) list).getTotal());
+            assertEquals(183, ((Page) list).getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(91, list.get(0).getId());
             assertEquals(100, list.get(list.size() - 1).getId());
@@ -91,7 +91,7 @@ public class RowBoundsTest {
             //获取从20开始，20条内容
             list = sqlSession.selectList("selectAll", null, new RowBounds(6, 20));
             assertEquals(20, list.size());
-            assertEquals(183, ((Page) list).getTotal());
+            assertEquals(183, ((Page) list).getTotalNum());
             //判断查询结果的位置是否正确
             assertEquals(101, list.get(0).getId());
             assertEquals(120, list.get(list.size() - 1).getId());

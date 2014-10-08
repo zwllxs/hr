@@ -30,7 +30,7 @@ public class PageSizeLessThenOrEqualZeroTest {
             List<Country> list = countryMapper.selectAll();
             PageInfo page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
 
             System.out.println("第二步");
             //limit<0的时候同上
@@ -38,7 +38,7 @@ public class PageSizeLessThenOrEqualZeroTest {
             list = countryMapper.selectAll();
             page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
             
             System.out.println("第三步");
         } finally {
@@ -59,13 +59,13 @@ public class PageSizeLessThenOrEqualZeroTest {
             List<Country> list = countryMapper.selectAll(new RowBounds(1, 0));
             PageInfo page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(-1, page.getTotal());
+            assertEquals(-1, page.getTotalNum());
 
             //limit<0的时候同上
             list = countryMapper.selectAll(new RowBounds(1, -100));
             page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(-1, page.getTotal());
+            assertEquals(-1, page.getTotalNum());
         } finally {
             sqlSession.close();
         }
@@ -85,13 +85,13 @@ public class PageSizeLessThenOrEqualZeroTest {
             List<Country> list = countryMapper.selectAll(new RowBounds(1, 0));
             PageInfo page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
 
             //pageSize<0的时候同上
             list = countryMapper.selectAll(new RowBounds(1, -100));
             page = new PageInfo(list);
             assertEquals(0, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
         } finally {
             sqlSession.close();
         }

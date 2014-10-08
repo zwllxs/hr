@@ -32,15 +32,31 @@ public class Test1
         // System.out.println("name2: "+fieldArr[i].getName());
         // }
         // System.out.println("\ncountry: "+country.getAllMethodList());
-        String[] strArr=new String[] {"23","4dfds","fghfd"};
-        List<String> strList=new ArrayList<>();
-        strList.add("ssd");
-        strList.add("ssd212");
-        strList.add("ssdfff");
+//        String[] strArr=new String[] {"23","4dfds","fghfd"};
+//        List<String> strList=new ArrayList<>();
+//        strList.add("ssd");
+//        strList.add("ssd212");
+//        strList.add("ssdfff");
+//        
+//        System.out.println("strArr: "+strArr);
+//        System.out.println("strArr: "+StringUtils.join(strArr,","));
+//        System.out.println("strList: "+StringUtils.join(strList,","));
         
-        System.out.println("strArr: "+strArr);
-        System.out.println("strArr: "+StringUtils.join(strArr,","));
-        System.out.println("strList: "+StringUtils.join(strList,","));
+//        String reg="^((?!hede).)*";
+//        String reg="((?!hede).)*";
+//        String reg="^(?!.*hello11)";
+        String reg="^(?!.*?hello1).*$";
+        System.out.println("是否匹配: "+"bhehello11eahedhe".matches(reg));
+        
+        String reg2="/admin/(^(?!.*?login).*$)";
+        String str2="http://localhost:8080/hr5/admin/index.html";
+        System.out.println("是否匹配2: "+str2.matches(reg2));
+        
+        String reg3="/(^(?!(.*admin.*)?login).*$)";
+        String str3="http://localhost:8080/hr5/admin/login.html";
+        System.out.println("是否匹配3: "+str3.matches(reg3));
+        
+        
     }
 
     @Test

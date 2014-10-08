@@ -74,8 +74,8 @@ public class PageInfo2<T> {
             this.pageNum = page.getPageNum();
             this.pageSize = page.getPageSize();
 
-            this.total = page.getTotal();
-            this.pages = page.getPages();
+            this.total = page.getTotalNum();
+            this.pages = page.getPageNum();
             this.list = page;
             this.size = page.size();
             //由于结果是>startRow的，所以实际的需要+1

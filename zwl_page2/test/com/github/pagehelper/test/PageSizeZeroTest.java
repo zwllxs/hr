@@ -32,7 +32,7 @@ public class PageSizeZeroTest {
             List<Country> list = countryMapper.selectAll();
             PageInfo page = new PageInfo(list);
             assertEquals(183, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
             
             System.out.println("第二步,以下不再调用");
             //pageSize=0的时候查询全部结果
@@ -40,7 +40,7 @@ public class PageSizeZeroTest {
             list = countryMapper.selectAll();
             page = new PageInfo(list);
             assertEquals(183, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
             
             System.out.println("第三步");
         } finally {
@@ -60,14 +60,14 @@ public class PageSizeZeroTest {
             List<Country> list = countryMapper.selectAll(new RowBounds(1, 0));
             PageInfo page = new PageInfo(list);
             assertEquals(183, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
 
             //pageSize=0的时候查询全部结果
             PageHelper.startPage(10, 0);
             list = countryMapper.selectAll(new RowBounds(1000, 0));
             page = new PageInfo(list);
             assertEquals(183, list.size());
-            assertEquals(183, page.getTotal());
+            assertEquals(183, page.getTotalNum());
         } finally {
             sqlSession.close();
         }

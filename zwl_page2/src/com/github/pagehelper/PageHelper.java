@@ -219,11 +219,12 @@ public class PageHelper implements Interceptor {
                 //得到处理结果
                 page.addAll((List) result);
                 //相当于查询第一页
-                page.setPageNum(1);
+//                page.setPageNum(1);
+                page.setPageNo(1);
                 //这种情况相当于pageSize=total
                 page.setPageSize(page.size());
                 //仍然要设置total
-                page.setTotal(page.size());
+                page.setTotalNum(page.size());
                 //返回结果仍然为Page类型 - 便于后面对接收类型的统一处理
                 return page;
             }
@@ -235,8 +236,8 @@ public class PageHelper implements Interceptor {
                 //查询总数
                 Object result = invocation.proceed();
                 //设置总数
-                page.setTotal((Integer) ((List) result).get(0));
-                if (page.getTotal() == 0) {
+                page.setTotalNum((Integer) ((List) result).get(0));
+                if (page.getTotalNum() == 0) {
                     return page;
                 }
             }

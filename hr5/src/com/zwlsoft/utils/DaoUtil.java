@@ -191,8 +191,8 @@ public class DaoUtil
         for (Field field : fieldArr)
         {
 //            System.out.println();
-//            NotCloumn annotaion = field.getAnnotation(NotCloumn.class);
-//            System.out.println("name: "+field.getName()+ ", annotaion: "+annotaion);
+//            NotCloumn annotaion2 = field.getAnnotation(NotCloumn.class);
+//            System.out.println("name: "+field.getName()+ ", annotaion: "+annotaion2);
             PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
                     obj.getClass());
             Method getMethod = pd.getReadMethod();// 获得get方法

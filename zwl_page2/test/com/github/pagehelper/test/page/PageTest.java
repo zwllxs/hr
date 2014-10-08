@@ -52,7 +52,7 @@ public class PageTest {
             assertEquals(1, list.size());
             assertEquals(7, page.getStartRow());
             assertEquals(4, page.getPageNum());
-            assertEquals(7, page.getTotal());
+            assertEquals(7, page.getTotalNum());
 
             //获取第-3页，2条内容
             //由于只有7天数据，分页插件会自动改为查询最后一页
@@ -62,7 +62,7 @@ public class PageTest {
             assertEquals(2, list.size());
             assertEquals(1, page.getStartRow());
             assertEquals(1, page.getPageNum());
-            assertEquals(7, page.getTotal());
+            assertEquals(7, page.getTotalNum());
         } finally {
             sqlSession.close();
         }

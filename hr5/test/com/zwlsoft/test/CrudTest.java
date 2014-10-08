@@ -2,19 +2,19 @@ package com.zwlsoft.test;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.pagehelper.PageHelper;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.po.Country2;
+import com.zwlsoft.po.User;
 import com.zwlsoft.service.CountryService;
+import com.zwlsoft.service.UserService;
 import com.zwlsoft.service.dao.MyIbatisBaseDao;
 
 /**
@@ -32,6 +32,9 @@ public class CrudTest
     @Autowired
     private CountryService countryService;
 
+    @Autowired
+    private UserService userService;
+    
 //    @Before
 //    public void init()
 //    {
@@ -144,7 +147,7 @@ public class CrudTest
         country.putSignMap("id", ">");
         country.putSignMap("countryName", "like");
         
-        PageHelper.startPage(1, 3);
+        PageHelper.startPage(2, 3);
         List<Country> countryList=countryService.selectListBySelected(country);
         System.out.println("countryList: "+countryList);
     }
@@ -164,4 +167,14 @@ public class CrudTest
         int num=countryService.deleteByIds(1,3,4,6,7,8,9);
         System.out.println("num: "+num);
     }
+    
+    
+    @Test
+    public void testLogin()
+    {
+//        User users=new User("zhangweilin", "123456");
+        User users=userService.login("zhangweilin", "123456");
+        System.out.println("users "+users);
+    }
+    
 }

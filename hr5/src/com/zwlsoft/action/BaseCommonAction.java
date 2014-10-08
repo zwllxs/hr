@@ -5,19 +5,19 @@ package com.zwlsoft.action;
 
 import java.io.Serializable;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.github.pagehelper.PageInfo;
 
 
 /**
  * Action的最顶层基类
- * @author lancey
+ * @author zhangweilin
  *
  */
 public abstract class BaseCommonAction implements Serializable{
@@ -29,6 +29,15 @@ public abstract class BaseCommonAction implements Serializable{
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected Model model;
+	/**
+	 * 分页组件
+	 */
+	protected PageInfo pageInfo;
+
+	/**
+	 * session
+	 */
+    protected HttpSession session;
 	
 //	protected Object getSession(final String key){
 //		if(StringUtils.isEmpty(key)){
@@ -56,22 +65,37 @@ public abstract class BaseCommonAction implements Serializable{
 //				key);
 //	}
 //	
+	/**
+	 * 在拦截器后调用
+	 * @param model
+	 * @param request
+	 * @param response
+	 */
 	@ModelAttribute
-	public void setReqAndResp(Model model,HttpServletRequest request,HttpServletResponse response){
+	public void setReqAndResp(Model model,HttpServletRequest request,HttpServletResponse response,PageInfo pageInfo){
 		this.request = request;
 		this.response = response;
 		this.model = model;
+		this.session=request.getSession();
+		this.pageInfo=pageInfo;
+		
+		System.out.println("pageInfo3: "+pageInfo);
+//		System.out.println("model: "+model);
+//		System.out.println("request: "+request);
+//		System.out.println("response: "+response);
+		
+//	    System.out.println("不设置了");
 	}
 	
-	protected HttpServletRequest getRequest() {
-		return this.request;  
-	}
-
-	protected HttpServletResponse getResponse() {
-		return  this.response;
-	}
-	
-	protected HttpSession getSession() {
-		return this.getRequest().getSession();
-	}
+//	protected HttpServletRequest getRequest() {
+//		return this.request;  
+//	}
+//
+//	protected HttpServletResponse getResponse() {
+//		return  this.response;
+//	}
+//	
+//	protected HttpSession getSession() {
+//		return this.getRequest().getSession();
+//	}
 }
