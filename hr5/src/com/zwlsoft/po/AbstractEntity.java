@@ -25,7 +25,7 @@ public abstract class AbstractEntity implements Entity
      */
     private Map<String, String> signMap=null;
     /**
-     * 是否自动sql
+     * 是否自动sql(汗，忘了干嘛用的了)
      */
     private boolean isAutoSql;
     

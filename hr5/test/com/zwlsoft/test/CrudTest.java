@@ -12,8 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.github.pagehelper.PageHelper;
 import com.zwlsoft.po.Country;
 import com.zwlsoft.po.Country2;
+import com.zwlsoft.po.RequireMent;
 import com.zwlsoft.po.User;
 import com.zwlsoft.service.CountryService;
+import com.zwlsoft.service.RequireMentService;
 import com.zwlsoft.service.UserService;
 import com.zwlsoft.service.dao.MyIbatisBaseDao;
 
@@ -34,6 +36,9 @@ public class CrudTest
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private RequireMentService requireMentService;
     
 //    @Before
 //    public void init()
@@ -177,4 +182,12 @@ public class CrudTest
         System.out.println("users "+users);
     }
     
+    
+    @Test
+    public void testInsertRequirMent()
+    {
+        RequireMent requireMent=new RequireMent();
+        requireMent.setProjectName("HR项目");
+        requireMentService.save(requireMent);
+    }
 }

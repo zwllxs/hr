@@ -267,6 +267,50 @@
 																										</table>
 																									</div>
 																									<div
+																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
+																										<table cellpadding="0" cellspacing="0">
+																											<tbody>
+																												<tr>
+																													<td width="60px"><div
+																															class="msgBoard_overToPoint">姓名：</div></td>
+																													<td><input
+																														class="g_itext msg_ipt msg_isMust"
+																														id="reqName" name="姓名" type="text"
+																														size="14" maxlength="50"><font
+																														style="color: red; margin-left: 5px">*</font></td>
+																												</tr>
+																											</tbody>
+																										</table>
+																									</div>
+																									<div
+																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
+																										<table cellpadding="0" cellspacing="0">
+																											<tbody>
+																												<tr>
+																													<td width="60px"><div
+																															class="msgBoard_overToPoint">电子邮件：</div></td>
+																													<td><input class="g_itext msg_ipt"
+																														id="reqEmail" name="电子邮件" type="text"
+																														size="14" maxlength="50"></td>
+																												</tr>
+																											</tbody>
+																										</table>
+																									</div>
+																									<div
+																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
+																										<table cellpadding="0" cellspacing="0">
+																											<tbody>
+																												<tr>
+																													<td width="60px"><div
+																															class="msgBoard_overToPoint">联系电话：</div></td>
+																													<td><input class="g_itext msg_ipt"
+																														id="reqPhone" name="联系电话" type="text"
+																														size="14" maxlength="50"></td>
+																												</tr>
+																											</tbody>
+																										</table>
+																									</div>
+																									<div
 																										style="height: 24px; line-height: 24px; width: 210px; float: left; margin-bottom: 4px;">
 																										<table cellpadding="0" cellspacing="0">
 																											<tbody>
