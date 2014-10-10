@@ -269,6 +269,21 @@ public class RequireMent extends AbstractEntity
     {
         this.attachment = attachment;
     }
+
+    @Override
+    public String toString()
+    {
+        return "RequireMent [id=" + id + ", name=" + name + ", email=" + email
+                + ", tel=" + tel + ", projectName=" + projectName
+                + ", projectType=" + projectType + ", budget=" + budget
+                + ", hasHardwareFlag=" + hasHardwareFlag + ", hardwareDesc="
+                + hardwareDesc + ", hasOutNetFlag=" + hasOutNetFlag
+                + ", outNetDesc=" + outNetDesc + ", hasLanFlag=" + hasLanFlag
+                + ", lanDesc=" + lanDesc + ", deployType=" + deployType
+                + ", peopleNum=" + peopleNum + ", projectDesc=" + projectDesc
+                + ", attachment=" + attachment + "]";
+    }
         
+    
 }
    

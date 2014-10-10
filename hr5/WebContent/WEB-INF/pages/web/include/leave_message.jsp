@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>		
 
 <table class="webContainerTable" cellpadding="0" cellspacing="0">
 	<tbody>
@@ -218,174 +219,126 @@
 																					<div
 																						class="formMiddleContent formMiddleContent15  ">
 																						<div class="msgBoard">
-																							<div id="msgAdd" class="msgAdd">
-																								<div class="g_tip msgTips"></div>
-																								<div class="msgAddTitle">发表您的留言：</div>
-																								<div class="msgAddItem">
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">姓名：</div></td>
-																													<td><input
-																														class="g_itext msg_ipt msg_isMust"
-																														id="reqName" name="姓名" type="text"
-																														size="14" maxlength="50"><font
-																														style="color: red; margin-left: 5px">*</font></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">电子邮件：</div></td>
-																													<td><input class="g_itext msg_ipt"
-																														id="reqEmail" name="电子邮件" type="text"
-																														size="14" maxlength="50"></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">联系电话：</div></td>
-																													<td><input class="g_itext msg_ipt"
-																														id="reqPhone" name="联系电话" type="text"
-																														size="14" maxlength="50"></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">姓名：</div></td>
-																													<td><input
-																														class="g_itext msg_ipt msg_isMust"
-																														id="reqName" name="姓名" type="text"
-																														size="14" maxlength="50"><font
-																														style="color: red; margin-left: 5px">*</font></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">电子邮件：</div></td>
-																													<td><input class="g_itext msg_ipt"
-																														id="reqEmail" name="电子邮件" type="text"
-																														size="14" maxlength="50"></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 23px; line-height: 23px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">联系电话：</div></td>
-																													<td><input class="g_itext msg_ipt"
-																														id="reqPhone" name="联系电话" type="text"
-																														size="14" maxlength="50"></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div
-																										style="height: 24px; line-height: 24px; width: 210px; float: left; margin-bottom: 4px;">
-																										<table cellpadding="0" cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">验证码：</div></td>
-																													<td><div style="width: 180px">
-																															<div style="float: left;">
-																																<input class="g_itext"
-																																	id="msgBoardCaptcha"
-																																	style="width: 40px" type="text"
-																																	maxlength="4">
-																															</div>
-																															<div style="float: left;">
-																																<img alt=""
-																																	onclick="this.src='${basePath }/verify_code?t='+Math.random();"
-																																	title="看不清，换一张" id="msgBoardCaptchaImg"
-																																	style="height: 24px; width: 80px; cursor: pointer"
-																																	src="${basePath }/verify_code">
-																															</div>
-																														</div></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																								</div>
-																								<div class="msgAddText">
-																									<div style="margin-bottom: 4px;">
-																										<table width="100%" cellpadding="0"
-																											cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">内容：</div></td>
-																													<td><div>
-																															<textarea class="g_textarea"
-																																id="reqContent" rows="3" cols="50"
-																																style="width: 87%;" maxlength="200"></textarea>
-																														</div></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																									<div class="msgAddButton">
-																										<table width="100%" cellpadding="0"
-																											cellspacing="0">
-																											<tbody>
-																												<tr>
-																													<td width="60px"><div
-																															class="msgBoard_overToPoint">&nbsp;</div></td>
-																													<td><div style="">
-																															<input class="g_ibutton"
-																																extclass="g_ibutton" type="button"
-																																onclick="Site.msgBoardAddMsg()"
-																																value="提交留言"> <span
-																																class="g_minor"
-																																style="float: left; padding-left: 5px; _float: none;">留言需管理员审核后才会在网页中显示</span>
-																														</div></td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</div>
-																								</div>
-																							</div>
-																							<div id="pagenation15" class="pagenation">
-																								<div class="pagePrev">
-																									<span>上一页</span>
-																								</div>
-																								<div class="pageNo">
-																									<span>1</span>
-																								</div>
-																								<div class="pageNext">
-																									<span>下一页</span>
-																								</div>
-																							</div>
+																						  <form:form method="post" commandName="requireMent" action="${basePath}/submit_require_ment.html">
+																							 <table >
+																							 	<tr>
+																							 		<td>
+																							 			项目名称:
+																							 		</td>
+																							 		<td>
+																							 			<input name="projectName">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			项目类型:
+																							 		</td>
+																							 		<td>
+																							 			<select name="projectType"> 
+																							 				<option value="1">111</option>
+																							 				<option value="1">111</option>
+																							 				<option value="1">111</option>
+																							 				<option value="1">111</option>
+																							 			</select>
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			项目预算:
+																							 		</td>
+																							 		<td>
+																							 			<input name="budget">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			是否有硬件环境:
+																							 		</td>
+																							 		<td>
+																							 			是<input type="radio" value="1" name="hasHardwareFlag">
+																							 			否<input type="radio" value="0" name="hasHardwareFlag">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			硬件环境配置描述:
+																							 		</td>
+																							 		<td>
+																							 			<input name="hardwareDesc">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			是否外网环境:
+																							 		</td>
+																							 		<td>
+																							 			是<input type="radio" value="1" name="hasOutNetFlag">
+																							 			否<input type="radio" value="0" name="hasOutNetFlag">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			外网情况描述:
+																							 		</td>
+																							 		<td>
+																							 			<input name="outNetDesc">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			是否有局域网:
+																							 		</td>
+																							 		<td>
+																							 			是<input type="radio" value="1" name="hasLanFlag">
+																							 			否<input type="radio" value="0" name="hasLanFlag">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			局域网情况描述:
+																							 		</td>
+																							 		<td>
+																							 			<input name="lanDesc">
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			期望部署方式:
+																							 		</td>
+																							 		<td>
+																							 			<select name="deployType" > 
+																							 				<option value="">请选择</option>
+																							 				<option value="1">本地局域网部署</option>
+																							 				<option value="2">自己外网部署</option>
+																							 				<option value="3">SAAS模式部署</option>
+																							 				<option value="10">其它</option>
+																							 			</select>
+																							 		</td>
+																							 	</tr>
+																							 	<tr>
+																							 		<td>
+																							 			估计使用人数(如果是网站，此可忽略):
+																							 		</td>
+																							 		<td>
+																							 			<input name="peopleNum">人  
+																							 		</td>
+																							 	</tr>
+																							 	<tr> 
+																							 		<td>
+																							 			期望交付日期:
+																							 		</td>
+																							 		<td>
+																							 			<input name="expectedPayDate">
+																							 		</td>
+																							 	</tr>
+																							 	<tr> 
+																							 		<td colspan="2">
+																							 			 <input type="submit" value="提交">
+																							 			 <input type="reset" value="重置">
+																							 		</td>
+																							 	</tr>
+																							 </table> 
+																						  </form:form>	 
 																						</div>
 																					</div>
 																				</td>
