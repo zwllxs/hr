@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../common/head.jsp"></jsp:include>
- 
+  
 <!DOCTYPE html>
 <!-- saved from url=(0026)http://www.zwllxs.icoc.cc/ -->
 <html xmlns="http://www.w3.org/1999/xhtml" class="g_html">
@@ -19,6 +19,7 @@
 
 <link type="text/css" href="${basePath }/res/web/css/base.min.css"
 	rel="stylesheet">
+<%@ include file="../../../../res/public/css/operateResultCss.jsp" %> 
 <link type="text/css" href="${basePath }/res/web/css/492.min.css"
 	rel="stylesheet" id="templateFrame" class="templateFrameClass">
 <meta name="keywords" content="">

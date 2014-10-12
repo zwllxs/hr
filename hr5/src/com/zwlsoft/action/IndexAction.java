@@ -42,6 +42,7 @@ public class IndexAction extends BaseActionSupport
      * @param model
      * @return
      */
+    @Token
     @RequestMapping("/web/{type}")
     public String type(@PathVariable("type") String type,Model model)
     {
@@ -53,12 +54,14 @@ public class IndexAction extends BaseActionSupport
     /**
      * 提交需求
      */
+    @Token
     @RequestMapping("/submit_require_ment")
     public String submitRequireMent(@Valid RequireMent requireMent,BindingResult result)
     {
         System.out.println("requireMent: "+requireMent);
         requireMentService.save(requireMent);
         
+        model.addAttribute("ok","提交成功，我们将会在第一时间联系您");
         model.addAttribute("type","leave_message");
         return "/web/index";
     }

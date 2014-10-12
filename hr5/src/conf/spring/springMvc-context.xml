@@ -41,6 +41,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
            		<property name="exclude" value="/admin/login,/admin/login2,/admin/login3" />
            </bean>  
         </mvc:interceptor>  
+        
+        <mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	        <bean class="com.zwlsoft.action.TokenInterceptor"/>
+	    </mvc:interceptor>
     </mvc:interceptors> 
 
 	<bean name="/admin/frame/top.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" /> 

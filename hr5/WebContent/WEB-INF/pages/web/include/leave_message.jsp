@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>		
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>		
+
 
 <table class="webContainerTable" cellpadding="0" cellspacing="0">
 	<tbody>
@@ -22,10 +24,6 @@
 							<tbody>
 								<tr valign="top">
 									<td id="containerMiddleLeft" class="containerMiddleLeft">
-
-
-
-
 									</td>
 
 									<td class="containerMiddleCenter">
@@ -219,7 +217,23 @@
 																					<div
 																						class="formMiddleContent formMiddleContent15  ">
 																						<div class="msgBoard">
+																						 <c:if test="${not empty ok }">
+																						 	<c:set var="class" value="OkMsg"></c:set>
+																						 	<c:set var="info" value="${ok }"></c:set>
+																						 </c:if>
+																						 <c:if test="${not empty error }">
+																						 	<c:set var="class" value="ErrorMsg"></c:set>
+																						 	<c:set var="info" value="${error }"></c:set>
+																						 </c:if>
+																						 <c:if test="${not empty warning}">
+																						 	<c:set var="class" value="WarningMsg"></c:set>
+																						 	<c:set var="info" value="${warning }"></c:set>
+																						 </c:if>
+																						  <div class="${class }">
+																						  	  ${info }
+																						  </div>
 																						  <form:form method="post" commandName="requireMent" action="${basePath}/submit_require_ment.html">
+																							<input type="hidden" name="token" value="${token}" />
 																							 <table >
 																							 	<tr>
 																							 		<td>
@@ -247,7 +261,7 @@
 																							 			项目预算:
 																							 		</td>
 																							 		<td>
-																							 			<input name="budget">
+																							 			<input name="budget">元
 																							 		</td>
 																							 	</tr>
 																							 	<tr>
@@ -332,7 +346,23 @@
 																							 		</td>
 																							 	</tr>
 																							 	<tr> 
-																							 		<td colspan="2">
+																							 		<td>
+																							 			附件:
+																							 		</td>
+																							 		<td>
+																							 			<input type="file" name="attachment">
+																			 				 		</td>
+																							 	</tr>
+																							 	<tr> 
+																							 		<td>
+																							 			项目描述:
+																							 		</td>
+																							 		<td>
+																							 			<textarea name="projectDesc" rows="5" cols="80"></textarea>
+																							 		</td>
+																							 	</tr>
+																							 	<tr> 
+																							 		<td colspan="2" align="center"> 
 																							 			 <input type="submit" value="提交">
 																							 			 <input type="reset" value="重置">
 																							 		</td>

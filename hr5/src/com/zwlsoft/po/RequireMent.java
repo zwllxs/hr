@@ -99,6 +99,11 @@ public class RequireMent extends AbstractEntity
      * 附件路径
      */
     private String attachment;
+    
+    /**
+     * 期望交付日期
+     */
+    private String expectedPayDate;
 
     public Integer getId()
     {
@@ -270,6 +275,16 @@ public class RequireMent extends AbstractEntity
         this.attachment = attachment;
     }
 
+    public String getExpectedPayDate()
+    {
+        return expectedPayDate;
+    }
+
+    public void setExpectedPayDate(String expectedPayDate)
+    {
+        this.expectedPayDate = expectedPayDate;
+    }
+
     @Override
     public String toString()
     {
@@ -281,7 +296,8 @@ public class RequireMent extends AbstractEntity
                 + ", outNetDesc=" + outNetDesc + ", hasLanFlag=" + hasLanFlag
                 + ", lanDesc=" + lanDesc + ", deployType=" + deployType
                 + ", peopleNum=" + peopleNum + ", projectDesc=" + projectDesc
-                + ", attachment=" + attachment + "]";
+                + ", attachment=" + attachment + ", expectedPayDate="
+                + expectedPayDate + "]";
     }
         
     
